@@ -1,0 +1,97 @@
+/* architect login page */
+/* user login page */
+/* user sign up page */
+.all {
+	display: grid;
+	place-items: center;
+	margin-top: 50px;
+}
+
+.signup {
+	margin-left: 40px;
+}
+
+.signupbtn {
+	margin-top: 20px;
+	color: #cee1ff;
+	background-color: #28467f;
+	font-size: 20px;
+	padding: 10px 140px;
+	border: none;
+	border-radius: 12px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+button {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	color: #cee1ff;
+	background-color: #28467f;
+	font-size: 20px;
+	padding: 10px;
+	border: none;
+	width: 350px;
+	border-radius: 12px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.form {
+	width: auto;
+	background-color: #96aaec;
+	font-size: 25px;
+	height: auto;
+	padding: 40px;
+	border-radius: 13px;
+	position: relative;
+	display: block;
+}
+
+.onlylog {
+	margin: -300px 500px;
+	width: 380px;
+	background-color: #96aaec;
+	font-size: 25px;
+	height: auto;
+	padding: 40px;
+	border-radius: 13px;
+	position: relative;
+}
+
+.onlyreg {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 32%;
+	margin: 20px 32%;
+	width: 457px;
+	background-color: #96aaec;
+	font-size: 22px;
+	height: auto;
+	padding: 40px;
+	border-radius: 13px;
+	position: relative;
+}
+
+.alert {
+	width: 300px;
+	font-size: 22px;
+	padding-left: 41px;
+	margin-left: 50px;
+}
+
+label {
+	color: #28467f;
+}
+
+input {
+	font-size: 18px;
+	padding: 5px;
+	border-radius: 7px;
+	float: right;
+}
+
+.holder {
+	width: 600px;
+	border: 5px solid #96aaec;
+}

@@ -1,0 +1,111 @@
+pre {
+  max-width: 570px;
+  overflow-x: auto;
+}
+
+#firstname {
+  margin-left: 65px;
+}
+#architectName {
+  margin-left: 119px;
+}
+#lastname {
+  margin-left: 67px;
+}
+#architectEmail {
+  margin-left: 98px;
+}
+#email {
+  margin-left: 67px;
+}
+#phonenumber {
+  margin-left: 23px;
+}
+#designname {
+  margin-left: 40px;
+}
+#designurl {
+  margin-left: 70px;
+}
+#time {
+  margin-left: 0px;
+}
+#messagetextarea {
+  margin-left: 77px;
+}
+#architectMessage {
+  margin-left: 92px;
+}
+.bookingpage {
+  margin-top: 100px;
+}
+
+.designurl {
+  width: 400px;
+  height: 300px;
+  padding-left: 85px;
+  border-radius: 12px;
+}
+a {
+  text-decoration: none;
+  color: #28467f;
+}
+.a-form,
+#a-form {
+  background: linear-gradient(
+    214deg,
+    rgb(147, 174, 249) 10%,
+    rgba(178, 197, 255, 1) 60%,
+    rgb(202, 215, 254) 100%
+  );
+  width: 570px;
+  font-size: 23px;
+  padding: 50px;
+  border-radius: 13px;
+  top: 170px;
+  margin-bottom: 40px;
+}
+.list-of-customer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+input,
+textarea {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 7px;
+  border: none;
+  width: 350px;
+  float: right;
+}
+.text-search {
+  width: 300px;
+}
+
+.verifybtn,
+#dessubmit {
+  float: right;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #cee1ff;
+  background-color: #28467f;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  width: fit-content;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#dessubmit {
+  margin-left: 100px;
+}
+.both-btn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  float: right;
+}

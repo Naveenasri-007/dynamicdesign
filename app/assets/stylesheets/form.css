@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+
+.onlylog {
+    margin: -300px 500px;
+    width: 380px;
+    background-color: #96aaec;
+    font-size: 25px;
+    height: auto;
+    padding: 40px;
+    border-radius: 13px;
+    position: relative;
+}
+
+input {
+	font-size: 18px;
+	padding: 5px;
+	border-radius: 7px;
+	float: right;
+}
+
+.onlyreg {
+	margin: 20px 32%;
+	width: 457px;
+	background-color: #96aaec;
+	font-size: 22px;
+	height: auto;
+	padding: 40px;
+	border-radius: 13px;
+	position: relative;
+}

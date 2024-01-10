@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Index Page</title>
+	<%= stylesheet_link_tag "universe", "data-turbo-track": "reload" %>
+	<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+</head>
+
+<body>
+	<!-- header is started -->
+	<header class="header">
+		<div>
+			<a href=""> 
+			  <%= image_tag('common/logo.png', alt: 'logo', class:'logo') %>
+			</a>
+
+			              
+
+		</div>
+		<nav class="nav">
+
+    <% if user_signed_in? %>
+ <div> Welcome  user <%= current_user.email %> </div>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+				<%#
+				<a class="a" href="user_home.jsp">Home</a>
+				 <a class="a" href="userarchitectlistservlet">Architects</a> 
+				 <a class="a" href="userdesignlistservlet">Designs</a>
+				   <a class="a" href="UserListBookingServlet">My Booking</a> 
+				   <a class="a" href="user_about_us.jsp">About us</a>
+				    <a class="a" href="user_contact_us.jsp">Contact us</a>
+				     <a class="a" href="user_profile.jsp"> 
+				     <img src="<%=request.getContextPath()/assets/image/common/profile.png"
+										alt="profile" class="profileofuser">
+								</a>
+                %>
+
+				<% elsif architect_signed_in? %>
+
+
+
+				<div> Welcome architect <%= current_architect.email %> </div>
+				<%= button_to "Sign out", destroy_architect_session_path, method: :delete %>
+
+
+                <% else %>
+			<div id="button">
+				<div class="dropdown">
+					<button class="dropbtn">Login</button>
+					<div class="dropdown-content">
+						<a href="/users/sign_in">Login as Customer</a>
+						<%= button_to "Sign in", new_architect_session_path %>
+						<a href="/architects/sign_in">Login as Architect</a>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<button class="dropbtn">Register</button>
+					<div class="dropdown-content">
+						<a href="users/sign_up">Register as Customer</a>
+	           <%= button_to "Sign up", new_architect_registration_path %>
+						<a href="architects/sign_up">Register as Architect</a>
+					</div>
+				</div>
+			</div>
+			<% end %>
+
+
+		</nav>
+
+	</header>
+	<!-- header is ended -->
+</body>
+
+</html>
+
