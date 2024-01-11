@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f918dff-bf4e-4766-891d-ac99ed7c53b0" name="Changes" comment="" />
+    <list default="true" id="5f918dff-bf4e-4766-891d-ac99ed7c53b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/views/designs/_design.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/designs/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dynamicdesign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dynamicdesign.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/create.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/destroy.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/update.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/development.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/development.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/84/dbc9f2d3d58513" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/84/dbc9f2d3d58513" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -258,6 +273,9 @@
       <workItem from="1704870734811" duration="280000" />
       <workItem from="1704871159592" duration="845000" />
       <workItem from="1704872100519" duration="9000" />
+      <workItem from="1704872134722" duration="1189000" />
+      <workItem from="1704890563977" duration="455000" />
+      <workItem from="1704892689605" duration="6597000" />
     </task>
     <servers />
   </component>

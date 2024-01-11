@@ -1,2 +1,9 @@
-<h1>Designs#new</h1>
-<p>Find me in app/views/designs/new.html.erb</p>
+<h1>New design</h1>
+
+<%= render "form", design: @design %>
+
+<br>
+
+<div>
+  <%= link_to "Back to designs", designs_path %>
+</div>

@@ -1,2 +1,22 @@
-<h1>Designs#index</h1>
-<p>Find me in app/views/designs/index.html.erb</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Design Index</title>
+</head>
+<body>
+<p style="color: green"><%= notice %></p>
+<div id="designs">
+  <% @designs.each do |design| %>
+    <%= render design %>
+    <p>
+      <%= link_to "Show this design", design %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New design", new_design_path %>
+</body>
+</html>
