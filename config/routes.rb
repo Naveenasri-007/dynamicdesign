@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :designs
-  get 'designs/index'
-  get 'designs/show'
-  get 'designs/new'
-  get 'designs/create'
-  get 'designs/edit'
-  get 'designs/update'
-  get 'designs/destroy'
+  resources :designs, only: [:index, :show, :new, :create, :edit, :update]
+
+  get 'products/filter_by_category', to: 'products#filter_by_category'
+
 
   #devise for architects
   devise_for :architects
