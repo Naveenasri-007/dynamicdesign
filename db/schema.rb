@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_09_104608) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_12_111028) do
   create_table "architects", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_104608) do
     t.index ["architect_id"], name: "index_designs_on_architect_id"
   end
 
+  create_table "likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "design_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["design_id"], name: "index_likes_on_design_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,4 +82,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_104608) do
 
   add_foreign_key "assets", "designs"
   add_foreign_key "designs", "architects"
+  add_foreign_key "likes", "designs"
+  add_foreign_key "likes", "users"
 end

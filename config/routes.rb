@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   get 'products/filter_by_category', to: 'products#filter_by_category'
 
 
+
+  resources :designs do
+    resources :likes, only: [:create, :destroy]
+  end
+
   #devise for architects
   devise_for :architects
 

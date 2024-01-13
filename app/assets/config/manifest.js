@@ -10,13 +10,3 @@ if (searchParam) {
 } else {
     window.location.href = 'http://localhost:3000/designs';
 }
-
-
-
-function filterDesigns(category) {
-    if (category) {
-      window.location.href = `http://localhost:3000/designs?category=${category}`;
-    } else {
-      window.location.href = 'http://localhost:3000/designs';
-    }
-  }

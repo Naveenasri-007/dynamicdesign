@@ -3,6 +3,18 @@
 <%= render @design %>
 
 <div>
+ 
+
+
+<p><%= @design.likes.count %> <%= (@design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+<% if @design.likes.exists?(user: current_user) %>
+  <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>
+<% else %>
+  <%= button_to 'Like', design_likes_path(@design), method: :design  %>
+<% end %>
+
+
   <%= link_to "Edit this design", edit_design_path(@design) %> |
   <%= link_to "Back to designs", designs_path %>
 
