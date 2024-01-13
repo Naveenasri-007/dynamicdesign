@@ -13,10 +13,10 @@ class LikesController < ApplicationController
     end
 
     def destroy
-        @like.destroy
-        flash[:notice] = "like deleted successfully"
-        redirect_to design_path(@design)
-      end
+      @like.destroy
+      flash[:notice] = "like deleted successfully"
+      redirect_to design_path(@design)
+    end
   
     private
   
