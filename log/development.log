@@ -30160,3 +30160,2026 @@ Processing by DesignsController#index as HTML
 Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 2.1ms | Allocations: 7698)
 
 
+Started GET "/designs" for ::1 at 2024-01-17 10:44:00 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.7ms | Allocations: 435)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.8ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 86.3ms | Allocations: 42810)
+  Rendered layout layouts/application.html.erb (Duration: 805.7ms | Allocations: 117452)
+Completed 200 OK in 846ms (Views: 806.4ms | ActiveRecord: 6.5ms | Allocations: 128285)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 10:44:05 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.6ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 15.5ms | Allocations: 6365)
+  Rendered layout layouts/application.html.erb (Duration: 18.5ms | Allocations: 8087)
+Completed 200 OK in 26ms (Views: 17.0ms | ActiveRecord: 2.3ms | Allocations: 10141)
+
+
+Started GET "/designs?sort=likes&page=1" for ::1 at 2024-01-17 10:44:14 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes", "page"=>"1"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.5ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 13.5ms | Allocations: 6358)
+  Rendered layout layouts/application.html.erb (Duration: 16.3ms | Allocations: 8070)
+Completed 200 OK in 19ms (Views: 14.6ms | ActiveRecord: 2.4ms | Allocations: 9048)
+
+
+Started GET "/designs?sort=likes&page=2" for ::1 at 2024-01-17 10:44:18 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes", "page"=>"2"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 2[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 3667)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 5366)
+Completed 200 OK in 12ms (Views: 8.4ms | ActiveRecord: 1.4ms | Allocations: 6344)
+
+
+Started GET "/designs?sort=dislikes" for ::1 at 2024-01-17 10:44:21 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.5ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.4ms | Allocations: 6336)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 8036)
+Completed 200 OK in 17ms (Views: 12.7ms | ActiveRecord: 2.2ms | Allocations: 9020)
+
+
+Started GET "/designs?sort=dislikes" for ::1 at 2024-01-17 10:44:23 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes"}
+  [1m[36mDesign Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.4ms | Allocations: 6351)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 8050)
+Completed 200 OK in 17ms (Views: 12.7ms | ActiveRecord: 2.3ms | Allocations: 9020)
+
+
+Started GET "/" for ::1 at 2024-01-17 10:49:34 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered common/_navbar.html.erb (Duration: 279.4ms | Allocations: 53381)
+  Rendered common/_index.html.erb (Duration: 64.9ms | Allocations: 9737)
+  Rendered common/_footer.html.erb (Duration: 12.4ms | Allocations: 2473)
+  Rendered home/index.html.erb within layouts/application (Duration: 362.3ms | Allocations: 66260)
+  Rendered layout layouts/application.html.erb (Duration: 383.2ms | Allocations: 81786)
+Completed 200 OK in 407ms (Views: 399.6ms | ActiveRecord: 0.0ms | Allocations: 86979)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-17 10:49:36 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered common/_navbar.html.erb (Duration: 2.2ms | Allocations: 1812)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 11.6ms | Allocations: 5357)
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | Allocations: 6718)
+Completed 200 OK in 45ms (Views: 16.7ms | ActiveRecord: 1.6ms | Allocations: 23171)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-17 10:49:56 +0530
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"navee@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'navee@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 303 See Other in 216ms (ActiveRecord: 0.2ms | Allocations: 6805)
+
+
+Started GET "/" for ::1 at 2024-01-17 10:49:56 +0530
+Processing by HomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/common/_navbar.html.erb:24
+  Rendered common/_navbar.html.erb (Duration: 4.1ms | Allocations: 2851)
+  Rendered common/_index.html.erb (Duration: 11.1ms | Allocations: 8705)
+  Rendered common/_footer.html.erb (Duration: 2.7ms | Allocations: 2153)
+  Rendered home/index.html.erb within layouts/application (Duration: 18.3ms | Allocations: 13942)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 15270)
+Completed 200 OK in 20ms (Views: 19.8ms | ActiveRecord: 0.2ms | Allocations: 15553)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 10:50:05 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.7ms | Allocations: 411)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.9ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 93.0ms | Allocations: 36070)
+  Rendered layout layouts/application.html.erb (Duration: 96.7ms | Allocations: 37805)
+Completed 200 OK in 110ms (Views: 92.3ms | ActiveRecord: 6.7ms | Allocations: 41627)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:50:07 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 12.1ms | Allocations: 5974)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | Allocations: 7672)
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 1.5ms | Allocations: 9032)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 10:50:14 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 6373)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 8072)
+Completed 200 OK in 19ms (Views: 12.0ms | ActiveRecord: 1.8ms | Allocations: 10073)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 10:53:00 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.5ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.5ms | Allocations: 431)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.4ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 94.9ms | Allocations: 40889)
+  Rendered layout layouts/application.html.erb (Duration: 351.9ms | Allocations: 105315)
+Completed 200 OK in 401ms (Views: 354.9ms | ActiveRecord: 5.7ms | Allocations: 118953)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 10:53:07 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.6ms | Allocations: 6219)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | Allocations: 7923)
+Completed 200 OK in 17ms (Views: 13.7ms | ActiveRecord: 2.0ms | Allocations: 8655)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:53:13 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 29.4ms | Allocations: 16918)
+  Rendered layout layouts/application.html.erb (Duration: 31.7ms | Allocations: 18616)
+Completed 200 OK in 35ms (Views: 30.3ms | ActiveRecord: 2.0ms | Allocations: 19980)
+
+
+Started DELETE "/designs/2/likes/14" for ::1 at 2024-01-17 10:53:14 +0530
+Processing by LikesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"2", "id"=>"14"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`id` = 14 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:28:in `find_like'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mLike Destroy (5.4ms)[0m  [1m[31mDELETE FROM `likes` WHERE `likes`.`id` = 14[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+Redirected to http://localhost:3000/designs/2
+Completed 302 Found in 16ms (ActiveRecord: 8.6ms | Allocations: 4215)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:53:14 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 3817)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 5542)
+Completed 200 OK in 11ms (Views: 8.5ms | ActiveRecord: 0.8ms | Allocations: 6243)
+
+
+Started POST "/designs/2/likes" for ::1 at 2024-01-17 10:53:15 +0530
+Processing by LikesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`user_id` = 1 AND `likes`.`design_id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:32:in `already_liked?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (2.1ms)[0m  [1m[32mINSERT INTO `likes` (`design_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 1, '2024-01-17 05:23:15.811449', '2024-01-17 05:23:15.811449')[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/designs/2
+Completed 302 Found in 12ms (ActiveRecord: 3.2ms | Allocations: 7232)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:53:15 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 6.9ms | Allocations: 4334)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 6032)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 1.0ms | Allocations: 6689)
+
+
+Started GET "/designs/2/edit" for ::1 at 2024-01-17 10:53:17 +0530
+Processing by DesignsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/edit.html.erb within layouts/application
+  Rendered designs/_form.html.erb (Duration: 8.5ms | Allocations: 3794)
+  Rendered designs/edit.html.erb within layouts/application (Duration: 10.0ms | Allocations: 4136)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 5842)
+Completed 200 OK in 16ms (Views: 12.9ms | ActiveRecord: 0.2ms | Allocations: 6567)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 10:55:20 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.5ms | Allocations: 437)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 97.9ms | Allocations: 42711)
+  Rendered layout layouts/application.html.erb (Duration: 1144.6ms | Allocations: 204590)
+Completed 500 Internal Server Error in 1170ms (ActiveRecord: 3.4ms | Allocations: 214800)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `javascript_importmap_tags' for #<ActionView::Base:0x0000000000d0e8>):
+     7:   <%= csp_meta_tag %>
+     8:   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+     9:   <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+    10:   <%= javascript_importmap_tags %>
+    11: 
+    12: </head>
+    13: 
+  
+app/views/layouts/application.html.erb:10
+Started GET "/designs" for ::1 at 2024-01-17 10:55:21 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.1ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 6228)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | Allocations: 8615)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.7ms | Allocations: 9289)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `javascript_importmap_tags' for #<ActionView::Base:0x0000000000d700>):
+     7:   <%= csp_meta_tag %>
+     8:   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+     9:   <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+    10:   <%= javascript_importmap_tags %>
+    11: 
+    12: </head>
+    13: 
+  
+app/views/layouts/application.html.erb:10
+Started GET "/designs" for ::1 at 2024-01-17 10:57:47 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.9ms | Allocations: 435)
+  [1m[36mLike Load (0.7ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 97.9ms | Allocations: 42689)
+Importmap skipped missing path: turbo.min.js
+Importmap skipped missing path: stimulus.min.js
+Importmap skipped missing path: stimulus-loading.js
+Importmap skipped missing path: turbo.min.js
+Importmap skipped missing path: stimulus.min.js
+Importmap skipped missing path: stimulus-loading.js
+  Rendered layout layouts/application.html.erb (Duration: 1578.4ms | Allocations: 233659)
+Completed 200 OK in 1619ms (Views: 1580.2ms | ActiveRecord: 6.0ms | Allocations: 243943)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 10:57:55 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.8ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.4ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 17.6ms | Allocations: 6210)
+  Rendered layout layouts/application.html.erb (Duration: 21.6ms | Allocations: 7847)
+Completed 200 OK in 25ms (Views: 19.4ms | ActiveRecord: 3.4ms | Allocations: 8549)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:57:58 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.5ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 51.3ms | Allocations: 20369)
+  Rendered layout layouts/application.html.erb (Duration: 56.0ms | Allocations: 22011)
+Completed 200 OK in 64ms (Views: 54.6ms | ActiveRecord: 3.2ms | Allocations: 23361)
+
+
+Started DELETE "/designs/2/likes/15" for ::1 at 2024-01-17 10:58:00 +0530
+Processing by LikesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"2", "id"=>"15"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`id` = 15 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:28:in `find_like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mLike Destroy (0.2ms)[0m  [1m[31mDELETE FROM `likes` WHERE `likes`.`id` = 15[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+Redirected to http://localhost:3000/designs/2
+Completed 302 Found in 10ms (ActiveRecord: 1.5ms | Allocations: 4168)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 10:58:00 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.6ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 12.2ms | Allocations: 3768)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 5409)
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 1.9ms | Allocations: 6054)
+
+
+Started POST "/designs/2/likes" for ::1 at 2024-01-17 10:58:02 +0530
+Processing by LikesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"2"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 794)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.1.2) lib/action_controller/metal/request_forgery_protection.rb:293:in `handle_unverified_request'
+actionpack (7.1.2) lib/action_controller/metal/request_forgery_protection.rb:388:in `handle_unverified_request'
+devise (4.9.3) lib/devise/controllers/helpers.rb:255:in `handle_unverified_request'
+actionpack (7.1.2) lib/action_controller/metal/request_forgery_protection.rb:377:in `verify_authenticity_token'
+activesupport (7.1.2) lib/active_support/callbacks.rb:403:in `block in make_lambda'
+activesupport (7.1.2) lib/active_support/callbacks.rb:202:in `block (2 levels) in halting'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:203:in `block in halting'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `block in invoke_before'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `each'
+activesupport (7.1.2) lib/active_support/callbacks.rb:598:in `invoke_before'
+activesupport (7.1.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+actiontext (7.1.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (3.0.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.8) lib/rack/etag.rb:29:in `call'
+rack (3.0.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.0.8) lib/rack/head.rb:15:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.2) lib/active_record/migration.rb:654:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/method_override.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.2) lib/rails/engine.rb:529:in `call'
+rackup (2.1.0) lib/rackup/handler/webrick.rb:111:in `service'
+webrick (1.8.1) lib/webrick/httpserver.rb:140:in `service'
+webrick (1.8.1) lib/webrick/httpserver.rb:96:in `run'
+webrick (1.8.1) lib/webrick/server.rb:310:in `block in start_thread'
+Started GET "/designs/2" for ::1 at 2024-01-17 10:59:45 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.6ms | Allocations: 437)
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 71.9ms | Allocations: 30402)
+  Rendered layout layouts/application.html.erb (Duration: 402.3ms | Allocations: 95174)
+Completed 200 OK in 482ms (Views: 408.0ms | ActiveRecord: 4.9ms | Allocations: 124026)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 10:59:52 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 22.1ms | Allocations: 9362)
+  Rendered layout layouts/application.html.erb (Duration: 25.5ms | Allocations: 11092)
+Completed 200 OK in 29ms (Views: 23.8ms | ActiveRecord: 2.4ms | Allocations: 11937)
+
+
+Started GET "/designs/3" for ::1 at 2024-01-17 10:59:56 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 13.1ms | Allocations: 4387)
+  Rendered layout layouts/application.html.erb (Duration: 16.6ms | Allocations: 6094)
+Completed 200 OK in 19ms (Views: 14.1ms | ActiveRecord: 3.2ms | Allocations: 6749)
+
+
+Started DELETE "/designs/3/likes/5" for ::1 at 2024-01-17 10:59:59 +0530
+Processing by LikesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"3", "id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:28:in `find_like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mLike Destroy (0.2ms)[0m  [1m[31mDELETE FROM `likes` WHERE `likes`.`id` = 5[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+Redirected to http://localhost:3000/designs/3
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms | Allocations: 4177)
+
+
+Started GET "/designs/3" for ::1 at 2024-01-17 10:59:59 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 3799)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 5509)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.8ms | Allocations: 6209)
+
+
+Started POST "/designs/3/likes" for ::1 at 2024-01-17 11:00:00 +0530
+Processing by LikesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`user_id` = 1 AND `likes`.`design_id` = 3 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:32:in `already_liked?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.2ms)[0m  [1m[32mINSERT INTO `likes` (`design_id`, `user_id`, `created_at`, `updated_at`) VALUES (3, 1, '2024-01-17 05:30:00.463408', '2024-01-17 05:30:00.463408')[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/designs/3
+Completed 302 Found in 10ms (ActiveRecord: 1.3ms | Allocations: 7183)
+
+
+Started GET "/designs/3" for ::1 at 2024-01-17 11:00:00 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 6.2ms | Allocations: 4344)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 6051)
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 1.0ms | Allocations: 6707)
+
+
+Started GET "/designs/3/edit" for ::1 at 2024-01-17 11:00:01 +0530
+Processing by DesignsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/edit.html.erb within layouts/application
+  Rendered designs/_form.html.erb (Duration: 7.9ms | Allocations: 3813)
+  Rendered designs/edit.html.erb within layouts/application (Duration: 9.3ms | Allocations: 4155)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | Allocations: 5893)
+Completed 200 OK in 19ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 6609)
+
+
+Started PATCH "/designs/3" for ::1 at 2024-01-17 11:00:03 +0530
+Processing by DesignsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design"=>{"design_name"=>"Minimalist", "style"=>"Minimalist", "price_per_sqft"=>"12", "square_feet"=>"2341", "category"=>"livingroom", "floorplan"=>"2bhk", "time_required"=>"1", "bio"=>"Minimalist interior design. One of the most thoroughly modern interior design styles", "brief"=>"Minimalist interior design. One of the most thoroughly modern interior design styles", "architect_id"=>"11"}, "commit"=>"Update Design", "id"=>"3"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+Redirected to http://localhost:3000/designs/3
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1428)
+
+
+Started GET "/designs/3" for ::1 at 2024-01-17 11:00:03 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.3ms | Allocations: 36)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 7.1ms | Allocations: 4360)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 6082)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 1.1ms | Allocations: 6739)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 11:00:07 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 10.0ms | Allocations: 5280)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 6987)
+Completed 200 OK in 15ms (Views: 11.8ms | ActiveRecord: 1.7ms | Allocations: 7695)
+
+
+Started GET "/designs?category=bedroom" for ::1 at 2024-01-17 11:00:43 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"bedroom"}
+  [1m[36mDesign Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%bedroom%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%bedroom%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 2584)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 4292)
+Completed 200 OK in 12ms (Views: 8.4ms | ActiveRecord: 2.1ms | Allocations: 5077)
+
+
+Started GET "/designs?design_name=" for ::1 at 2024-01-17 11:00:44 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>""}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 9.2ms | Allocations: 5322)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 7029)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 1.4ms | Allocations: 7738)
+
+
+Started GET "/designs?design_name=" for ::1 at 2024-01-17 11:01:33 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>""}
+  [1m[36mDesign Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.6ms | Allocations: 435)
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.8ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 92.4ms | Allocations: 41732)
+  Rendered layout layouts/application.html.erb (Duration: 338.5ms | Allocations: 106695)
+Completed 200 OK in 383ms (Views: 341.4ms | ActiveRecord: 6.0ms | Allocations: 117050)
+
+
+Started GET "/designs?category=bedroom" for ::1 at 2024-01-17 11:01:38 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"bedroom"}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%bedroom%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%bedroom%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 2617)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 4325)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 1.4ms | Allocations: 5122)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 11:01:40 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.3ms | Allocations: 6359)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 8089)
+Completed 200 OK in 20ms (Views: 13.0ms | ActiveRecord: 2.0ms | Allocations: 10119)
+
+
+Started GET "/designs?sort=dislikes" for ::1 at 2024-01-17 11:01:41 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.2ms | Allocations: 6355)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | Allocations: 8063)
+Completed 200 OK in 17ms (Views: 12.7ms | ActiveRecord: 2.1ms | Allocations: 9026)
+
+
+Started GET "/designs/5" for ::1 at 2024-01-17 11:01:43 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 36.6ms | Allocations: 20327)
+  Rendered layout layouts/application.html.erb (Duration: 39.6ms | Allocations: 22034)
+Completed 200 OK in 42ms (Views: 38.2ms | ActiveRecord: 2.1ms | Allocations: 23368)
+
+
+Started DELETE "/designs/5/likes/7" for ::1 at 2024-01-17 11:01:45 +0530
+Processing by LikesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"5", "id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`id` = 7 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:28:in `find_like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mLike Destroy (0.2ms)[0m  [1m[31mDELETE FROM `likes` WHERE `likes`.`id` = 7[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:16:in `destroy'
+Redirected to http://localhost:3000/designs/5
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms | Allocations: 4172)
+
+
+Started GET "/designs/5" for ::1 at 2024-01-17 11:01:45 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 5.8ms | Allocations: 3828)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 5538)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.8ms | Allocations: 6237)
+
+
+Started POST "/designs/5/likes" for ::1 at 2024-01-17 11:01:46 +0530
+Processing by LikesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`user_id` = 1 AND `likes`.`design_id` = 5 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:32:in `already_liked?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.2ms)[0m  [1m[32mINSERT INTO `likes` (`design_id`, `user_id`, `created_at`, `updated_at`) VALUES (5, 1, '2024-01-17 05:31:46.615880', '2024-01-17 05:31:46.615880')[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/designs/5
+Completed 302 Found in 11ms (ActiveRecord: 1.3ms | Allocations: 7169)
+
+
+Started GET "/designs/5" for ::1 at 2024-01-17 11:01:46 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 7.0ms | Allocations: 4351)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 6080)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 1.0ms | Allocations: 6738)
+
+
+Started GET "/designs/5/edit" for ::1 at 2024-01-17 11:01:48 +0530
+Processing by DesignsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/edit.html.erb within layouts/application
+  Rendered designs/_form.html.erb (Duration: 7.5ms | Allocations: 3802)
+  Rendered designs/edit.html.erb within layouts/application (Duration: 8.7ms | Allocations: 4142)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 5857)
+Completed 200 OK in 14ms (Views: 11.8ms | ActiveRecord: 0.2ms | Allocations: 6571)
+
+
+Started PATCH "/designs/5" for ::1 at 2024-01-17 11:01:49 +0530
+Processing by DesignsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design"=>{"design_name"=>"classic traditional design", "style"=>"Minimalist", "price_per_sqft"=>"12", "square_feet"=>"1023", "category"=>"livingroom", "floorplan"=>"2bhk", "time_required"=>"2", "bio"=>"When it comes to interior design styles, almost everything is rooted in traditional interior design ideas", "brief"=>"When it comes to interior design styles, almost everything is rooted in traditional interior design ideas", "architect_id"=>"12"}, "commit"=>"Update Design", "id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+Redirected to http://localhost:3000/designs/5
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1426)
+
+
+Started GET "/designs/5" for ::1 at 2024-01-17 11:01:49 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 7.4ms | Allocations: 4364)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 6074)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 1.1ms | Allocations: 6731)
+
+
+Started GET "/designs/5" for ::1 at 2024-01-17 11:03:13 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 5 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.7ms | Allocations: 436)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 80.2ms | Allocations: 33581)
+  Rendered layout layouts/application.html.erb (Duration: 378.5ms | Allocations: 98166)
+Completed 200 OK in 462ms (Views: 381.2ms | ActiveRecord: 5.3ms | Allocations: 127018)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 11:03:16 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.7ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 16.6ms | Allocations: 6778)
+  Rendered layout layouts/application.html.erb (Duration: 22.7ms | Allocations: 8508)
+Completed 200 OK in 26ms (Views: 20.9ms | ActiveRecord: 2.7ms | Allocations: 9354)
+
+
+Started GET "/designs?category=kitchen" for ::1 at 2024-01-17 11:03:20 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"kitchen"}
+  [1m[36mDesign Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%kitchen%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%kitchen%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 827)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 2534)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.7ms | Allocations: 3310)
+
+
+Started GET "/designs?category=kitchen&page=1" for ::1 at 2024-01-17 11:03:23 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"kitchen", "page"=>"1"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%kitchen%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%kitchen%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 848)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 2555)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.5ms | Allocations: 3294)
+
+
+Started GET "/designs?category=kitchen&page=1" for ::1 at 2024-01-17 11:03:24 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"kitchen", "page"=>"1"}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%kitchen%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%kitchen%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 839)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2547)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 3286)
+
+
+Started GET "/designs?category=bedroom" for ::1 at 2024-01-17 11:03:29 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"category"=>"bedroom"}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs` WHERE (category LIKE '%bedroom%')[0m
+  ↳ app/controllers/designs_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.3ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE (category LIKE '%bedroom%') LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 2608)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 4315)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 1.2ms | Allocations: 5053)
+
+
+Started GET "/designs?design_name=" for ::1 at 2024-01-17 11:03:33 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>""}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.1ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 5295)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 7003)
+Completed 200 OK in 14ms (Views: 11.5ms | ActiveRecord: 1.5ms | Allocations: 7711)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 11:03:37 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.8ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 13.3ms | Allocations: 6350)
+  Rendered layout layouts/application.html.erb (Duration: 35.1ms | Allocations: 8057)
+Completed 200 OK in 55ms (Views: 33.3ms | ActiveRecord: 2.4ms | Allocations: 12961)
+
+
+Started GET "/designs?sort=dislikes" for ::1 at 2024-01-17 11:03:44 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.6ms | Allocations: 6365)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 8095)
+Completed 200 OK in 17ms (Views: 13.4ms | ActiveRecord: 1.9ms | Allocations: 9060)
+
+
+Started GET "/designs?sort=dislikes&page=1" for ::1 at 2024-01-17 11:03:50 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes", "page"=>"1"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.5ms | Allocations: 6349)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 8056)
+Completed 200 OK in 17ms (Views: 13.0ms | ActiveRecord: 1.9ms | Allocations: 9015)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 11:03:54 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.6ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.5ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 18.3ms | Allocations: 6373)
+  Rendered layout layouts/application.html.erb (Duration: 21.8ms | Allocations: 8081)
+Completed 200 OK in 25ms (Views: 19.2ms | ActiveRecord: 3.5ms | Allocations: 9038)
+
+
+Started GET "/designs" for ::1 at 2024-01-17 11:04:01 +0530
+Processing by DesignsController#index as HTML
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 5285)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 6992)
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 1.6ms | Allocations: 7699)
+
+
+Started GET "/designs?sort=likes" for ::1 at 2024-01-17 11:04:03 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"likes"}
+  [1m[36mDesign Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC[0m
+  ↳ app/controllers/designs_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.4ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 10.0ms | Allocations: 6364)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 8072)
+Completed 200 OK in 15ms (Views: 11.1ms | ActiveRecord: 1.9ms | Allocations: 9029)
+
+
+Started GET "/designs?sort=dislikes" for ::1 at 2024-01-17 11:04:08 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"sort"=>"dislikes"}
+  [1m[36mDesign Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS `count_all`, `designs`.`id` AS `designs_id` FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC[0m
+  ↳ app/controllers/designs_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.6ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` INNER JOIN `likes` ON `likes`.`design_id` = `designs`.`id` GROUP BY `designs`.`id` ORDER BY COUNT(likes.id) ASC LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 17.4ms | Allocations: 6371)
+  Rendered layout layouts/application.html.erb (Duration: 20.7ms | Allocations: 8102)
+Completed 200 OK in 25ms (Views: 19.0ms | ActiveRecord: 2.8ms | Allocations: 9061)
+
+
+Started GET "/designs?design_name=" for ::1 at 2024-01-17 11:04:15 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>""}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.1ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.1ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 5295)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 7022)
+Completed 200 OK in 13ms (Views: 10.5ms | ActiveRecord: 1.4ms | Allocations: 7732)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 11:04:20 +0530
+Processing by DesignsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  Rendered designs/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 3742)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 5448)
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 1.0ms | Allocations: 6103)
+
+
+Started POST "/designs/2/likes" for ::1 at 2024-01-17 11:04:22 +0530
+Processing by LikesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "design_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:24:in `find_design'
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`user_id` = 1 AND `likes`.`design_id` = 2 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:32:in `already_liked?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.2ms)[0m  [1m[32mINSERT INTO `likes` (`design_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 1, '2024-01-17 05:34:22.410587', '2024-01-17 05:34:22.410587')[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/likes_controller.rb:10:in `create'
+Redirected to http://localhost:3000/designs/2
+Completed 302 Found in 10ms (ActiveRecord: 1.4ms | Allocations: 7523)
+
+
+Started GET "/designs/2" for ::1 at 2024-01-17 11:04:22 +0530
+Processing by DesignsController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` WHERE `designs`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/designs_controller.rb:61:in `set_design'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/show.html.erb within layouts/application
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/show.html.erb:11
+  [1m[36mLike Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:37
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2 AND `likes`.`user_id` = 1 LIMIT 1[0m
+  ↳ app/views/designs/show.html.erb:38
+  Rendered designs/show.html.erb within layouts/application (Duration: 6.6ms | Allocations: 4371)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 6078)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 1.0ms | Allocations: 6778)
+
+
+Started GET "/designs?design_name=" for ::1 at 2024-01-17 11:04:23 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>""}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 0[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 2[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 3[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 13.7ms | Allocations: 6241)
+  Rendered layout layouts/application.html.erb (Duration: 24.0ms | Allocations: 7959)
+Completed 200 OK in 26ms (Views: 22.4ms | ActiveRecord: 2.3ms | Allocations: 8668)
+
+
+Started GET "/designs?design_name=&page=2" for ::1 at 2024-01-17 11:04:29 +0530
+Processing by DesignsController#index as HTML
+  Parameters: {"design_name"=>"", "page"=>"2"}
+  [1m[36mDesign Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `designs`[0m
+  ↳ app/controllers/designs_controller.rb:15:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering designs/index.html.erb within layouts/application
+  [1m[36mDesign Load (0.2ms)[0m  [1m[34mSELECT `designs`.* FROM `designs` LIMIT 2 OFFSET 2[0m
+  ↳ app/views/designs/index.html.erb:30
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 37)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.2ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 4[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/_design.html.erb (Duration: 0.1ms | Allocations: 36)
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT `likes`.* FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:32
+  [1m[36mLike Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mCACHE Like Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `likes` WHERE `likes`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:33
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT `ratings`.* FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:38
+  [1m[36mRating Average (0.3ms)[0m  [1m[34mSELECT AVG(`ratings`.`value`) FROM `ratings` WHERE `ratings`.`design_id` = 5[0m
+  ↳ app/views/designs/index.html.erb:39
+  Rendered designs/index.html.erb within layouts/application (Duration: 11.0ms | Allocations: 5280)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | Allocations: 7009)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 1.9ms | Allocations: 7718)
+
+
