@@ -1,13 +1,18 @@
 class DesignsController < ApplicationController
   before_action :set_design, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   def index
     if params[:design_name].present?
-      @designs = Design.where("design_name LIKE ?", "%#{params[:design_name]}%")
+      @pagy, @designs = pagy(Design.where("design_name LIKE ?", "%#{params[:design_name]}%"),  items: 2)
     elsif params[:category].present?
-      @designs = Design.where("category LIKE ?", "%#{params[:category]}%")
+      @pagy, @designs = pagy(Design.where("category LIKE ?", "%#{params[:category]}%"),  items: 2)
+    elsif params[:sort] == 'likes'
+      @pagy, @designs = pagy(Design.all.by_likes,  items: 2)
+    elsif params[:sort] == 'dislikes'
+      @pagy, @designs = pagy(Design.all.by_dislikes,  items: 2)
     else
-      @designs = Design.all
+      @pagy, @designs = pagy(Design.all ,  items: 2)
     end
   end
   

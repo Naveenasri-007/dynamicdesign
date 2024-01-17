@@ -23,6 +23,9 @@
     <option value="bathroom">Bath Room</option>
   </select>
 
+  <%= link_to "Sort by Likes", designs_path(sort: 'likes') %>
+  <%= link_to "Sort by Dislikes", designs_path(sort: 'dislikes') %> 
+
   <div id="design-list">
     <% @designs.each do |design| %>
       <%= render design %>
@@ -31,12 +34,22 @@
       <% else %>
         <p>No likes yet</p>
       <% end %>
+
+      <% if design.ratings && design.ratings.present? %>
+        <p>Average Rating: <%= design.ratings.average(:value).to_f.round(2) %></p>
+      <% else %>
+        <p>No ratings yet.</p>
+      <% end %>
       <p>
         <%= link_to "Show this design", design %>
       </br></br></br>
       </p>
     <% end %>
   </div>
+
+
+  <%= pagy_bootstrap_nav(@pagy).html_safe %>
+
 
   <%= link_to "New design", new_design_path %>
   <script>

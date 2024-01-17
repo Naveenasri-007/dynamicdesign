@@ -154,6 +154,7 @@ GEM
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.3.0)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -198,10 +199,6 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.1.0)
-    ransack (3.2.1)
-      activerecord (>= 6.1.5)
-      activesupport (>= 6.1.5)
-      i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redis (5.0.8)
@@ -269,9 +266,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
+  pagy
   puma (>= 5.0)
   rails (~> 7.1.2)
-  ransack
   redis (>= 4.0.1)
   selenium-webdriver
   sprockets-rails

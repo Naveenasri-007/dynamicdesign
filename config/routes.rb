@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :designs do
     resources :likes, only: [:create, :destroy]
-  end
+    resources :ratings, only: [:create, :edit, :update, :destroy]
+ end
 
   #devise for architects
   devise_for :architects
