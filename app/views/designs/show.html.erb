@@ -8,28 +8,28 @@
 
 <p><%= @design.likes.count %> <%= (@design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
-<% if current_user && @design && @design.ratings.present? %>
-<p>Rating: <%= @design.ratings.first.value %></p>
 
-  <!-- Edit Rating form 
-  <%= form_with(model: [@design, @design.ratings], url: design_ratings_path(@design, @design.ratings), method: :patch) do |form| %>
-    <%= form.label :value, 'Edit Rating' %>
-    <%= form.select :value, (1..5).to_a %>
-    <%= form.submit 'Update Rating' %>
-  <% end %>
-  
- 
- Delete Rating button 
-  <%= link_to 'Delete Rating', design_ratings_path(@design, @rating), method: :delete, data: { confirm: 'Are you sure?' } %> -->
-  
-  <% else %>
-  <!-- New Rating form -->
-  <%= form_with(model: [@design, Rating.new], url: design_ratings_path(@design), method: :design) do |form| %>
-    <%= form.label :value, 'Rating' %>
-    <%= form.select :value, (1..5).to_a %>
-    <%= form.submit 'Submit Rating' %>
+<% if current_user %>
+  <% if @design.ratings.exists?(user_id: current_user.id) %>
+    <!-- Edit Rating form -->
+    <%= form_with(model: [@design, current_user.ratings.find_by(design_id: @design.id)], url: design_rating_path(@design, @design.ratings.first), method: :patch) do |form| %>
+      <%= form.label :value, 'Edit Rating' %>
+      <%= form.select :value, (1..5).to_a %>
+      <%= form.submit 'Update Rating' %>
+    <% end %>
+
+    <!-- Delete Rating button -->
+    <%= button_to 'Delete Rating', design_rating_path(@design, current_user.ratings.find_by(design_id: @design.id)), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% else %>
+    <!-- New Rating form -->
+    <%= form_with(model: [@design, Rating.new], url: design_ratings_path(@design), method: :post) do |form| %>
+      <%= form.label :value, 'Rating' %>
+      <%= form.select :value, (1..5).to_a %>
+      <%= form.submit 'Submit Rating' %>
+    <% end %>
   <% end %>
 <% end %>
+
 
 
 

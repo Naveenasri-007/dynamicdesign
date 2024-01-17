@@ -35,7 +35,6 @@ class RatingsController < ApplicationController
       end
     end
     
-  
     def destroy
       @design = Design.find(params[:design_id])
       @rating = @design.ratings.find_by(user: current_user)
@@ -43,7 +42,6 @@ class RatingsController < ApplicationController
       if @rating.nil?
         redirect_to @design, alert: 'Rating not found.'
       else
-        debugger
         @rating.destroy
         redirect_to @design, notice: 'Rating deleted successfully.'
       end

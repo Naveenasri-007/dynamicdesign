@@ -8,14 +8,13 @@ class DesignsController < ApplicationController
     elsif params[:category].present?
       @pagy, @designs = pagy(Design.where("category LIKE ?", "%#{params[:category]}%"),  items: 2)
     elsif params[:sort] == 'likes'
-      @pagy, @designs = pagy(Design.all.by_likes,  items: 2)
+      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 2)
     elsif params[:sort] == 'dislikes'
-      @pagy, @designs = pagy(Design.all.by_dislikes,  items: 2)
+      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 2)
     else
       @pagy, @designs = pagy(Design.all ,  items: 2)
     end
   end
-  
 
   def show
   end
