@@ -36933,3 +36933,18 @@ Processing by DesignsController#index as HTML
 Completed 200 OK in 12ms (Views: 9.0ms | ActiveRecord: 1.3ms | Allocations: 6386)
 
 
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+Migrating to RemoveGenderAddressProfileImageCoverPhotoEducationExperienceDegreeCertificatePhotoNataCertificatePhotoFromArchitects (20240117095030)
+  [1m[35m (168.4ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `gender`[0m
+  [1m[35m (137.1ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `address`[0m
+  [1m[35m (136.8ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `profile_image`[0m
+  [1m[35m (123.5ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `cover_photo`[0m
+  [1m[35m (123.7ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `education`[0m
+  [1m[35m (111.0ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `experience`[0m
+  [1m[35m (130.7ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `degree_certificate_photo`[0m
+  [1m[35m (143.1ms)[0m  [1m[35mALTER TABLE `architects` DROP COLUMN `nata_certificate_photo`[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20240117095030')[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
