@@ -4,19 +4,11 @@ Rails.application.routes.draw do
 
   get 'products/filter_by_category', to: 'products#filter_by_category'
 
-
-
   resources :designs do
     resources :likes, only: [:create, :destroy]
     resources :ratings, only: [:create, :edit, :update, :destroy]
- end
-
-  #devise for architects
+  end
   devise_for :architects
-
-  # if you check this how to navingate the user to give this comment
-  # rake routes | greb User
-  # #devise for user
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
