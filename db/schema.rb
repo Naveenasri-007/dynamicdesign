@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_17_095030) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_17_100231) do
   create_table "architects", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,14 +23,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_17_095030) do
     t.string "number"
     t.index ["email"], name: "index_architects_on_email", unique: true
     t.index ["reset_password_token"], name: "index_architects_on_reset_password_token", unique: true
-  end
-
-  create_table "assets", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "design_id", null: false
-    t.string "image_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["design_id"], name: "index_assets_on_design_id"
   end
 
   create_table "designs", charset: "utf8mb4", force: :cascade do |t|
@@ -82,7 +74,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_17_095030) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "assets", "designs"
   add_foreign_key "designs", "architects"
   add_foreign_key "likes", "designs"
   add_foreign_key "likes", "users"

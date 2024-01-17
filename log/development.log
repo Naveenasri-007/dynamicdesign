@@ -36948,3 +36948,179 @@ Migrating to RemoveGenderAddressProfileImageCoverPhotoEducationExperienceDegreeC
   [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20240117095030')[0m
   [1m[35m (0.6ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+Migrating to DropAssetsTable (20240117095451)
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20240117095451')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[35m (32.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS `dynamic_design`[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS `dynamic_design_test`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE DATABASE `dynamic_design` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE DATABASE `dynamic_design_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `architects` CASCADE[0m
+  [1m[35m (29.0ms)[0m  [1m[35mCREATE TABLE `architects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `remember_created_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `name` varchar(255), `number` varchar(255), UNIQUE INDEX `index_architects_on_email` (`email`), UNIQUE INDEX `index_architects_on_reset_password_token` (`reset_password_token`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `assets` CASCADE[0m
+  [1m[35m (25.7ms)[0m  [1m[35mCREATE TABLE `assets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_id` bigint NOT NULL, `image_url` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_assets_on_design_id` (`design_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `designs` CASCADE[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCREATE TABLE `designs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_name` varchar(255), `style` varchar(255), `price_per_sqft` decimal(10), `square_feet` int, `category` varchar(255), `floorplan` varchar(255), `time_required` varchar(255), `bio` varchar(255), `brief` text, `architect_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_designs_on_architect_id` (`architect_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `likes` CASCADE[0m
+  [1m[35m (27.5ms)[0m  [1m[35mCREATE TABLE `likes` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_id` bigint NOT NULL, `user_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_likes_on_designs_id` (`design_id`), INDEX `index_likes_on_users_id` (`user_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `ratings` CASCADE[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE `ratings` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `value` int, `design_id` bigint NOT NULL, `user_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_ratings_on_design_id` (`design_id`), INDEX `index_ratings_on_user_id` (`user_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (26.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `remember_created_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `name` varchar(255), `phone_number` varchar(255), UNIQUE INDEX `index_users_on_email` (`email`), UNIQUE INDEX `index_users_on_reset_password_token` (`reset_password_token`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (33.8ms)[0m  [1m[35mALTER TABLE `assets` ADD CONSTRAINT `fk_rails_6ee454279f`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (29.5ms)[0m  [1m[35mALTER TABLE `designs` ADD CONSTRAINT `fk_rails_dc521089ec`
+FOREIGN KEY (`architect_id`)
+  REFERENCES `architects` (`id`)
+[0m
+  [1m[35m (28.4ms)[0m  [1m[35mALTER TABLE `likes` ADD CONSTRAINT `fk_rails_4b3f096771`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (28.5ms)[0m  [1m[35mALTER TABLE `likes` ADD CONSTRAINT `fk_rails_1e09b5dabf`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (31.1ms)[0m  [1m[35mALTER TABLE `ratings` ADD CONSTRAINT `fk_rails_034e244634`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (30.7ms)[0m  [1m[35mALTER TABLE `ratings` ADD CONSTRAINT `fk_rails_a7dfeb9f5f`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (23.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20240117095451)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20240117095030),
+(20240113065604),
+(20240112110558),
+(20240109104608),
+(20240109103115),
+(20240109055430),
+(20240109055030),
+(20240108092715),
+(20240108092632),
+(20240108092558),
+(20240108092434),
+(20240108092358),
+(20240108092315),
+(20240108092226),
+(20240108092139),
+(20240108092033),
+(20240108091808),
+(20240108041604),
+(20240106090507),
+(20240106090051),
+(20240105085621);[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2024-01-17 09:59:29.597470', '2024-01-17 09:59:29.597473')[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '995c34880c037f740811a4332c1dc0570b5cc441', '2024-01-17 09:59:29.601691', '2024-01-17 09:59:29.601693')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `architects` CASCADE[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCREATE TABLE `architects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `remember_created_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `name` varchar(255), `number` varchar(255), UNIQUE INDEX `index_architects_on_email` (`email`), UNIQUE INDEX `index_architects_on_reset_password_token` (`reset_password_token`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `assets` CASCADE[0m
+  [1m[35m (24.7ms)[0m  [1m[35mCREATE TABLE `assets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_id` bigint NOT NULL, `image_url` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_assets_on_design_id` (`design_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `designs` CASCADE[0m
+  [1m[35m (26.5ms)[0m  [1m[35mCREATE TABLE `designs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_name` varchar(255), `style` varchar(255), `price_per_sqft` decimal(10), `square_feet` int, `category` varchar(255), `floorplan` varchar(255), `time_required` varchar(255), `bio` varchar(255), `brief` text, `architect_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_designs_on_architect_id` (`architect_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `likes` CASCADE[0m
+  [1m[35m (27.6ms)[0m  [1m[35mCREATE TABLE `likes` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `design_id` bigint NOT NULL, `user_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_likes_on_designs_id` (`design_id`), INDEX `index_likes_on_users_id` (`user_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `ratings` CASCADE[0m
+  [1m[35m (26.0ms)[0m  [1m[35mCREATE TABLE `ratings` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `value` int, `design_id` bigint NOT NULL, `user_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_ratings_on_design_id` (`design_id`), INDEX `index_ratings_on_user_id` (`user_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (27.9ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `remember_created_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `name` varchar(255), `phone_number` varchar(255), UNIQUE INDEX `index_users_on_email` (`email`), UNIQUE INDEX `index_users_on_reset_password_token` (`reset_password_token`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (35.7ms)[0m  [1m[35mALTER TABLE `assets` ADD CONSTRAINT `fk_rails_6ee454279f`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (32.6ms)[0m  [1m[35mALTER TABLE `designs` ADD CONSTRAINT `fk_rails_dc521089ec`
+FOREIGN KEY (`architect_id`)
+  REFERENCES `architects` (`id`)
+[0m
+  [1m[35m (27.9ms)[0m  [1m[35mALTER TABLE `likes` ADD CONSTRAINT `fk_rails_4b3f096771`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (34.1ms)[0m  [1m[35mALTER TABLE `likes` ADD CONSTRAINT `fk_rails_1e09b5dabf`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (33.9ms)[0m  [1m[35mALTER TABLE `ratings` ADD CONSTRAINT `fk_rails_034e244634`
+FOREIGN KEY (`design_id`)
+  REFERENCES `designs` (`id`)
+[0m
+  [1m[35m (33.3ms)[0m  [1m[35mALTER TABLE `ratings` ADD CONSTRAINT `fk_rails_a7dfeb9f5f`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20240117095451)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20240117095030),
+(20240113065604),
+(20240112110558),
+(20240109104608),
+(20240109103115),
+(20240109055430),
+(20240109055030),
+(20240108092715),
+(20240108092632),
+(20240108092558),
+(20240108092434),
+(20240108092358),
+(20240108092315),
+(20240108092226),
+(20240108092139),
+(20240108092033),
+(20240108091808),
+(20240108041604),
+(20240106090507),
+(20240106090051),
+(20240105085621);[0m
+  [1m[35m (24.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2024-01-17 09:59:30.023305', '2024-01-17 09:59:30.023308')[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE `ar_internal_metadata` SET `ar_internal_metadata`.`value` = 'test', `ar_internal_metadata`.`updated_at` = '2024-01-17 09:59:30.025892' WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '995c34880c037f740811a4332c1dc0570b5cc441', '2024-01-17 09:59:30.027770', '2024-01-17 09:59:30.027772')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+Migrating to DropAssetsTable (20240117100231)
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20240117100231')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('353062013100767145', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('353062013100767145')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
