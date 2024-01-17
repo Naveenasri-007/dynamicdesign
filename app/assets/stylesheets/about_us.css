@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+
+/* header is started */
+
+.hold {
+  width: 200px;
+}
+/* }header is ended */
+section div {
+  padding: 20px 0px;
+}
+.para {
+  width: 800px;
+}
+
+.section5,
+.section4,
+.section3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.review {
+  width: 400px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .section5,
+  .section4,
+  .section3 {
+    padding: 0;
+  }
+  .para {
+    width: 400px;
+  }
+}
+/* tokel */

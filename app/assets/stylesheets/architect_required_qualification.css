@@ -1,0 +1,107 @@
+/* header is started */
+#section1 {
+  background-image: url("../../assets/image/login as architect/required qualification/image 1.webp");
+}
+.hold {
+  width: 500px;
+}
+/* }header is ended */
+
+/* btn css started*/
+
+.form-btn {
+  display: grid;
+  place-items: center;
+  margin: 10px 0px;
+}
+
+.btn {
+  position: relative;
+  width: 250px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  background: #28467f;
+  color: #fff;
+  border-radius: 80px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-top: 2px solid #e6e6fa;
+  border-left: 2px solid #e6e6fa;
+  padding-left: 60px;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+}
+.btn:hover {
+  padding-left: 0;
+  padding-right: 60px;
+  color: #fff;
+}
+.btn span {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  left: 5px;
+  width: 70px;
+  height: 70px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 900;
+  transition: 0.5s cubic-bezier(0.4, 0, 1, 1);
+}
+.btn:hover span {
+  left: calc(100% - 76px);
+}
+.btn::after {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 100%;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(-175px) skew(25deg);
+  transition: 0.75s ease-in-out;
+}
+.btn:hover::after {
+  transform: translateX(175px) skew(25deg);
+}
+
+/* btn css ended */
+.gif {
+  height: 300px;
+  width: 400px;
+  border-radius: 15px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 40px;
+  border-radius: 15px;
+  padding: 10px;
+}
+h2,
+h3 {
+  text-align: left;
+}
+.tips {
+  width: 300px;
+}
+.architect-tips {
+  margin-bottom: 30px;
+}
+.con-para {
+  width: 600px;
+}
+@media screen and (max-width: 700px) {
+  .tipsimg {
+    width: 400px;
+    height: 250px;
+  }
+}
