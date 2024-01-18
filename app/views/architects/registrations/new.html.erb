@@ -26,10 +26,6 @@
 
         <h2 style="margin-top: -3px;">Personal Information</h2>
 
-        <div class="field">
-        <%= form.label :profileImage, 'Photo:' %>
-        <%= form.text_field :profileImage, required: true, placeholder: 'Profileimage', value: @profileImage %><br /><br />
-       </div>
 
         <div class="field">
         <%= form.label :name, 'Name:' %>
@@ -42,29 +38,10 @@
         </div>
 
         <div class="field">
-        <%= form.label :gender, 'Gender:' %>
-        <%= form.text_field :gender, list: 'Gender', required: true, placeholder: 'Male/Female', value: @gender %>
-        <datalist id="Gender">
-          <option value="Male">
-          <option value="Female">
-          <option value="Others">
-        </datalist><br /><br />
-        </div>
-
-        <div class="field">
         <%= form.label :number, 'Phone number:' %>
         <%= form.text_field :number, required: true, pattern: '[6789]{1}[0-9]{9}', title: 'Phone number with 6-9 and remaining 9 digits with 0-9', placeholder: '9218457240', value: @number %><br /><br />
         </div>
 
-        <div class="field">
-        <%= form.label :address, 'Address:' %>
-        <%= form.text_field :address, required: true, value: @address %><br /><br />
-        </div>
-
-        <div class="field">
-        <%= form.label :coverPhoto, 'Cover Photo:' %>
-        <%= form.text_field :coverPhoto, required: true, placeholder: 'Cover photo design', value: @coverPhoto %><br /><br />
-        </div>
       </div>
 
       <div class="form">
@@ -81,30 +58,7 @@
         </div>
         <br /> <br />
 
-        <div class="field">
-        <%= form.label :education, 'Education:' %>
-        <%= form.text_field :education, list: 'Education', required: true, placeholder: 'Bachelor of architects', value: @education %>
-        <datalist id="Education">
-          <option value="Bachelor of Architecture">
-          <option value="Master of Architecture">
-        </datalist><br /><br />
-        </div>
-
-        <div class="field">
-        <%= form.label :experience, 'Experience:' %>
-        <%= form.number_field :experience, required: true, placeholder: '2', value: @experience %><br /><br />
-        </div>
-
-        <div class="field">
-        <%= form.label :degreeCertificatePhoto, 'Degree Certificate:' %>
-        <%= form.text_field :degreeCertificatePhoto, required: true, placeholder: 'b.arch certificate', value: @degreeCertificatePhoto %><br /><br />
-        </div>
-
-        <div class="field">
-        <%= form.label :nataCertificatePhoto, 'NATA Certificate:' %>
-        <%= form.text_field :nataCertificatePhoto, required: true, placeholder: 'nata certificate', value: @nataCertificatePhoto %><br /><br />
-        </div>
-
+        
         <div class="actions">
         <%= form.button 'Sign up', type: 'submit' %>
         </div>

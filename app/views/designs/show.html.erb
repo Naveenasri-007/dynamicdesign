@@ -3,8 +3,6 @@
 <%= render @design %>
 
 <div>
- 
-
 
 <p><%= @design.likes.count %> <%= (@design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
@@ -30,9 +28,28 @@
   <% end %>
 <% end %>
 
+<!-- comments feature -->
+<!-- Add a form for users to add new comments -->
+<%= form_with(model: [@design, @design.comments.build], url: design_comments_path(@design)) do |form| %>
+  <%= form.text_area :content, placeholder: 'Add a comment...' %>
+  <%= form.submit 'Post Comment' %>
+<% end %>
 
-
-
+<% @design.comments.each do |comment| %>
+  <div>
+    <% if comment.user %>
+      <p><strong><%= comment.user.name %>:</strong></p>
+      <p><%= comment.content %></p>
+    <% else %>
+      <!-- <p><strong>Anonymous:</strong></p> -->
+      <p><%= comment.content %></p>
+    <% end %>
+    <% if current_user == comment.user %>
+      <%= link_to 'Edit', edit_design_comment_path(@design, comment) %>
+      <%= button_to 'Delete comment', design_comment_path(@design, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+<% end %> 
 
 <% if @design.likes.exists?(user: current_user) %>
   <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>

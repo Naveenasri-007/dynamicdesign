@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :designs do
     resources :likes, only: [:create, :destroy]
     resources :ratings, only: [:create, :edit, :update, :destroy]
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
   devise_for :architects
   devise_for :users
