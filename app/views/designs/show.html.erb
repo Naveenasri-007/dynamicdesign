@@ -1,64 +1,94 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @design %>
-
-<div>
-
-<p><%= @design.likes.count %> <%= (@design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-
-<% if current_user %>
-  <% if @design.ratings.exists?(user_id: current_user.id) %>
-    <!-- Edit Rating form -->
-    <%= form_with(model: [@design, current_user.ratings.find_by(design_id: @design.id)], url: design_rating_path(@design, @design.ratings.first), method: :patch) do |form| %>
-      <%= form.label :value, 'Edit Rating' %>
-      <%= form.select :value, (1..5).to_a %>
-      <%= form.submit 'Update Rating' %>
-    <% end %>
-
-    <!-- Delete Rating button -->
-    <%= button_to 'Delete Rating', design_rating_path(@design, current_user.ratings.find_by(design_id: @design.id)), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% else %>
-    <!-- New Rating form -->
-    <%= form_with(model: [@design, Rating.new], url: design_ratings_path(@design), method: :post) do |form| %>
-      <%= form.label :value, 'Rating' %>
-      <%= form.select :value, (1..5).to_a %>
-      <%= form.submit 'Submit Rating' %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<!-- comments feature -->
-<!-- Add a form for users to add new comments -->
-<%= form_with(model: [@design, @design.comments.build], url: design_comments_path(@design)) do |form| %>
-  <%= form.text_area :content, placeholder: 'Add a comment...' %>
-  <%= form.submit 'Post Comment' %>
-<% end %>
-
-<% @design.comments.each do |comment| %>
+<% if @design.present? %>
+  <%= render @design %>
   <div>
-    <% if comment.user %>
-      <p><strong><%= comment.user.name %>:</strong></p>
-      <p><%= comment.content %></p>
-    <% else %>
-      <!-- <p><strong>Anonymous:</strong></p> -->
-      <p><%= comment.content %></p>
-    <% end %>
-    <% if current_user == comment.user %>
-      <%= link_to 'Edit', edit_design_comment_path(@design, comment) %>
-      <%= button_to 'Delete comment', design_comment_path(@design, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  </div>
-<% end %> 
+    <p><%= @design.likes.count %> <%= (@design.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
-<% if @design.likes.exists?(user: current_user) %>
-  <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>
+    <% if current_user.present? %>
+      <% if @design.ratings.exists?(user_id: current_user.id) %>
+        <!-- Edit Rating form -->
+        <%= form_with(model: [@design, current_user.ratings.find_by(design_id: @design.id)], url: design_rating_path(@design, @design.ratings.first), method: :patch) do |form| %>
+          <%= form.label :value, 'Edit Rating' %>
+          <%= form.select :value, (1..5).to_a %>
+          <%= form.submit 'Update Rating' %>
+        <% end %>
+        <!-- Delete Rating button -->
+        <%= button_to 'Delete Rating', design_rating_path(@design, current_user.ratings.find_by(design_id: @design.id)), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% else %>
+        <!-- New Rating form -->
+        <%= form_with(model: [@design, Rating.new], url: design_ratings_path(@design), method: :post) do |form| %>
+          <%= form.label :value, 'Rating' %>
+          <%= form.select :value, (1..5).to_a %>
+          <%= form.submit 'Submit Rating' %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if @design.ratings && @design.ratings.present? %>
+        <p>Average Rating: <%= @design.ratings.average(:value).to_f.round(2) %></p>
+      <% else %>
+        <p>No ratings yet.</p>
+      <% end %>
+    <% end %>
+
+    <!-- comments feature -->
+    <!-- Add a form for users to add new comments -->
+    <% if current_user.present? %>
+
+      <%= form_with(model: [@design, @design.comments.build], url: design_comments_path(@design)) do |form| %>
+        <%= form.text_area :content, placeholder: 'Add a comment...' %>
+        <%= form.submit 'Post Comment' %>
+      <% end %>
+
+      <% @design.comments.each do |comment| %>
+        <div>
+          <% if comment.user %>
+            <p><strong><%= comment.user.name %>:</strong></p>
+            <p><%= comment.content %></p>
+          <% else %>
+            <!-- <p><strong>Anonymous:</strong></p> -->
+            <p><%= comment.content %></p>
+          <% end %>
+          <% if current_user == comment.user %>
+            <%= link_to 'Edit', edit_design_comment_path(@design, comment) %>
+            <%= button_to 'Delete comment', design_comment_path(@design, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <% @design.comments.each do |comment| %>
+        <div>
+          <% if comment.user %>
+            <p><strong><%= comment.user.name %>:</strong></p>
+            <p><%= comment.content %></p>
+          <% else %>
+            <!-- <p><strong>Anonymous:</strong></p> -->
+            <p><%= comment.content %></p>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+
+    <% if current_user.present? %>
+      <% if @design.likes.exists?(user: current_user) %>
+        <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', design_likes_path(@design), method: :design %>
+      <% end %>
+    <% end %>
+
+    <% if current_architect.present? && @design.architect == current_architect %>
+      <%= link_to "Edit this design", edit_design_path(@design) %> |
+      <%= link_to "Back to designs", designs_path %>
+      <%= button_to "Destroy this design", @design, method: :delete %>
+    <% else %>
+      <%= link_to "Back to designs", designs_path %>
+    <% end %>
+
+  </div>
+
 <% else %>
-  <%= button_to 'Like', design_likes_path(@design), method: :design  %>
+  <p>Design not found.</p>
 <% end %>
 
-  <%= link_to "Edit this design", edit_design_path(@design) %> |
-  <%= link_to "Back to designs", designs_path %>
-
-  <%= button_to "Destroy this design", @design, method: :delete %>
-</div>

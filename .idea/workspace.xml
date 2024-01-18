@@ -5,20 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f918dff-bf4e-4766-891d-ac99ed7c53b0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dynamicdesign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dynamicdesign.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/designs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/designs_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/design.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/design.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/architect.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/architect.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/_form.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/designs/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designs/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/designs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/development.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/development.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/43/c7b9c606ab1ea4" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/43/c7b9c606ab1ea4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/84/dbc9f2d3d58513" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/84/dbc9f2d3d58513" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/c7/fa41fe459859d0" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cache/bootsnap/compile-cache-iseq/c7/fa41fe459859d0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cache/bootsnap/load-path-cache" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cache/bootsnap/load-path-cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/pids/server.pid" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/pids/server.pid" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,10 +58,11 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
-    <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
@@ -279,6 +277,7 @@
       <workItem from="1704892689605" duration="6597000" />
       <workItem from="1704953962588" duration="12000" />
       <workItem from="1704953978781" duration="975000" />
+      <workItem from="1705564416284" duration="2348000" />
     </task>
     <servers />
   </component>
@@ -287,6 +286,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/views/designs/show.html.erb</url>
+          <line>3</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dynamicdesign@dynamicdesign.rcov" NAME="dynamicdesign Coverage Results" MODIFIED="1704471315177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="dynamicdesign" />

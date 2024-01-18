@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :designs, only: [:index, :show, :new, :create, :edit, :update]
 
   get 'products/filter_by_category', to: 'products#filter_by_category'
 
   resources :designs do
+    resources :designs, only: [:index, :show, :new, :create,  :edit, :update, :destroy]
     resources :likes, only: [:create, :destroy]
     resources :ratings, only: [:create, :edit, :update, :destroy]
     resources :comments, only: [:create, :edit, :update, :destroy]
