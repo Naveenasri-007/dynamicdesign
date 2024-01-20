@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  design_name: MyString
+  design_url: MyString
+  Expected_amount: 1
+  Expected_months: 1
+  Message: MyText
+  user: one
+  architect: one
+  status: MyString
+
+two:
+  design_name: MyString
+  design_url: MyString
+  Expected_amount: 1
+  Expected_months: 1
+  Message: MyText
+  user: two
+  architect: two
+  status: MyString

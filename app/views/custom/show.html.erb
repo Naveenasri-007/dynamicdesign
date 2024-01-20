@@ -1,0 +1,12 @@
+<% if current_user.present? %>
+<% if @architect.present? %>
+  <h1><%= @architect.name %></h1>
+  <h5><%= @architect.email %></h5>
+<% else %>
+  <p>Architect not found</p>
+<% end %>
+<% else %>
+  <p>If you are the architect, you are not able to see all other architects and their works.</p>
+<% end %>
+
+

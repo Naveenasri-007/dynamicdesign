@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f918dff-bf4e-4766-891d-ac99ed7c53b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dynamicdesign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dynamicdesign.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/designs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/designs_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/architect.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/architect.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designs/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designs/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/designs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/designs/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/development.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/development.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/pids/server.pid" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/pids/server.pid" afterDir="false" />
     </list>
@@ -61,8 +52,10 @@
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
@@ -277,7 +270,9 @@
       <workItem from="1704892689605" duration="6597000" />
       <workItem from="1704953962588" duration="12000" />
       <workItem from="1704953978781" duration="975000" />
-      <workItem from="1705564416284" duration="2348000" />
+      <workItem from="1705564416284" duration="2605000" />
+      <workItem from="1705576761076" duration="26000" />
+      <workItem from="1705576798148" duration="1071000" />
     </task>
     <servers />
   </component>

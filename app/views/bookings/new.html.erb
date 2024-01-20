@@ -1,0 +1,22 @@
+<%if current_user.present?  %>
+<%= form_with(model: @booking, url: bookings_path, method: :post) do |form| %>
+  <%= form.label :design_name %>
+  <%= form.text_field :design_name %>
+
+  <%= form.label :design_url %>
+  <%= form.text_field :design_url %>
+
+  <%= form.label :expected_amount %>
+  <%= form.number_field :expected_amount %>
+
+  <%= form.label :exected_months %>
+  <%= form.number_field :expected_months %>
+
+  <%= form.label :message %>
+  <%= form.text_area :message %>
+
+  <%= form.hidden_field :architect_id, value: @booking.architect_id %>
+
+  <%= form.submit "Create Booking" %>
+<% end %>
+<% end %>

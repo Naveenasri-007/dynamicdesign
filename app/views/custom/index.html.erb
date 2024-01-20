@@ -1,0 +1,15 @@
+<% if current_user.present? %>
+  <% if @architects.present? %>
+    <% @architects.each do |architect| %>
+      <h1><%= architect.name %></h1>
+      <p><%= architect.email %></p>
+      <p><%= architect.number %></p>
+      <p><%= link_to "Show this Architect", architect_path(id: architect.id) %></p>
+      <p><%= link_to 'Create Booking', new_booking_path(architect_id: architect.id) %></p>
+    <% end %>
+  <% else %>
+    <p>No architects available</p>
+  <% end %>
+<% elsif @current_architect.present? %>
+  <p>If you are the architect, you are not able to see all other architects and their works.</p>
+<% end %>

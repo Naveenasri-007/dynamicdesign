@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  match '/architects',   to: 'custom#index',   via: 'get'
+  get '/architect/:id', to: 'custom#show', as: :architect
 
   get 'products/filter_by_category', to: 'products#filter_by_category'
 
@@ -9,8 +10,21 @@ Rails.application.routes.draw do
     resources :ratings, only: [:create, :edit, :update, :destroy]
     resources :comments, only: [:create, :edit, :update, :destroy]
   end
+
+  resources :bookings, only: [:index, :show, :new, :create]
+  patch 'architect/update_status/:status', to: 'custom#update_status', as: :update_status
+
   devise_for :architects
+
   devise_for :users
+
+  resources :bookings do
+    member do
+      patch 'accept'
+      patch 'reject'
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
