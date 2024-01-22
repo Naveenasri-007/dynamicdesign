@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :architects
+  devise_for :users
+
   match '/architects',   to: 'custom#index',   via: 'get'
   get '/architect/:id', to: 'custom#show', as: :architect
 
@@ -12,18 +15,17 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:index, :show, :new, :create]
-  patch 'architect/update_status/:status', to: 'custom#update_status', as: :update_status
-
-  devise_for :architects
-
-  devise_for :users
-
+  patch 'bookings/:id/:status', to: 'custom#update_status', as: :update_status
   resources :bookings do
     member do
       patch 'accept'
       patch 'reject'
     end
   end
+
+
+
+ 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

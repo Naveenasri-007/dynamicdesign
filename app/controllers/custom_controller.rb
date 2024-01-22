@@ -19,7 +19,6 @@ class CustomController < ApplicationController
     @booking = Booking.find(params[:id])
     if params[:status] == 'accept'
       @booking.update(status: 'accepted')
-      current_architect.bookings.where.not(id: @booking.id).destroy_all
       redirect_to bookings_path, notice: 'Booking accepted successfully.'
     elsif params[:status] == 'reject'
       @booking.update(status: 'rejected')

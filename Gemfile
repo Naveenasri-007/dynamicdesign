@@ -9,6 +9,7 @@ gem 'pagy', '6.3.0'
 #for pagination
 gem 'devise'
 gem "bootsnap", require: false
+gem "rspec"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -38,5 +39,4 @@ group :development do
 end
 
 group :test do
- 
 end

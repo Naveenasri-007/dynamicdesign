@@ -40,10 +40,10 @@
         <strong>User Email:</strong> <%= booking.user.email %><br>
  
         <% if booking.status == 'Pending' %>
-            <%= link_to 'Accept', Rails.application.routes.url_helpers.accept_booking_path(booking), method: :PATCH %>
-            <%= link_to 'Reject', Rails.application.routes.url_helpers.reject_booking_path(booking), method: :PATCH %>
+          <%= button_to 'Accept', accept_booking_path(booking), method: :patch %>
+          <%= button_to 'Reject', reject_booking_path(booking), method: :patch %>
         <% else %>
-            <strong>Status:</strong> <%= booking.status %><br>
+          <strong>Status:</strong> <%= booking.status %><br>
         <% end %>
       
 
