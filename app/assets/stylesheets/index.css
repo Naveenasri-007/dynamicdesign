@@ -142,15 +142,13 @@ section div {
   align-items: center;
 }
 button {
-  margin-top: 20px;
+  margin-top: 10px;
   color: #cee1ff;
   background-color: #28467f;
   font-size: 20px;
   padding: 10px;
   border: none;
-  width: 306px;
-  width: -webkit-fill-available;
-/*  width: 350px; */
+  width: auto;
   border-radius: 12px;
   font-weight: bolder;
   cursor: pointer;
@@ -214,7 +212,6 @@ details > p {
   padding-left: 10px;
 }
 /* question and answer */
-
 /* phone resposive */
 @media screen and (max-width: 600px) {
   .free-img {

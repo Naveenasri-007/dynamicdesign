@@ -29,13 +29,13 @@
   <div id="design-list">
     <% @designs.each do |design| %>
       <%= render design %>
-      <% if design.likes && design.likes.present? %>
+      <% if design.likes.present? %>
         <p><%= design.likes.count %> <%= (design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
       <% else %>
         <p>No likes yet</p>
       <% end %>
 
-      <% if design.ratings && design.ratings.present? %>
+      <% if  design.ratings.present? %>
         <p>Average Rating: <%= design.ratings.average(:value).to_f.round(2) %></p>
       <% else %>
         <p>No ratings yet.</p>
