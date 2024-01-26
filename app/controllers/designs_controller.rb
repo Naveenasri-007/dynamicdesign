@@ -93,6 +93,6 @@ class DesignsController < ApplicationController
   end
 
   def design_params
-    params.require(:design).permit(:design_name, :style, :price_per_sqft, :square_feet, :category, :floorplan, :time_required, :bio, :brief, :architect_id)
+    params.require(:design).permit(:design_name, :style, :price_per_sqft, :square_feet, :category, :floorplan, :time_required, :bio, :brief, :architect_id, :design_url)
   end
 end

@@ -7,13 +7,16 @@ class CustomController < ApplicationController
   end
 
   def show
-    @architect = Architect.find(params[:id])
-    
+    @architect = Architect.find_by(id: params[:id])
+  
     if @architect.nil?
       flash[:error] = 'Architect not found'
       redirect_to architects_path
+    else
+      @designs = @architect.designs
     end
   end
+  
 
   def update_status
     @booking = Booking.find(params[:id])

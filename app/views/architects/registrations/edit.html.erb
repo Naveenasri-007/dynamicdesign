@@ -4,6 +4,16 @@
   <%= render "architects/shared/error_messages", resource: resource %>
 
   <div class="field">
+        <%= f.label :name, 'Name:' %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br /><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_photo, 'ProfilePhoto:' %>
+    <%= f.text_field :profile_photo, autofocus: true, autocomplete: "profile_photo" %><br /><br />
+  </div>      
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

@@ -33,6 +33,11 @@
         </div>
 
         <div class="field">
+        <%= form.label :profile_photo, 'ProfilePhoto:' %>
+        <%= form.text_field :profile_photo, required: true, placeholder: 'Enter your profile_photo', value: @profile_photo %><br /><br />
+        </div>
+
+        <div class="field">
           <%= form.label :email, 'Email:' %>
           <%= form.email_field :email, pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$', title: 'Make sure email should be in the correct pattern', required: true, placeholder: 'abc@gmail.com', value: @email %><br /><br />
         </div>

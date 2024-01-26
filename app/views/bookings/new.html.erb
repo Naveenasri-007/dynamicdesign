@@ -15,6 +15,7 @@
   <%= form.label :message %>
   <%= form.text_area :message %>
 
+  <%= form.hidden_field :design_id, value: @booking.design_id %>
   <%= form.hidden_field :architect_id, value: @booking.architect_id %>
 
   <%= form.submit "Create Booking" %>

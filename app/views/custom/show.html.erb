@@ -1,12 +1,30 @@
 <% if current_user.present? %>
-<% if @architect.present? %>
-  <h1><%= @architect.name %></h1>
-  <h5><%= @architect.email %></h5>
-<% else %>
-  <p>Architect not found</p>
-<% end %>
+  <% if @architect.present? %>
+    <div>
+      <h1><%= @architect.name %></h1>
+      <img src="<%= @architect.profile_photo %>" alt="Architect Photo">
+      <h5><%= @architect.email %></h5>
+
+      <% @architect.designs.each do |design| %>
+        <div>
+          <h5>Design name: <%= design.design_name %></h5>
+          <p>Design url: <%= design.design_url %></p>
+          <p>Style: <%= design.style %></p>
+          <p>Price per sqft: <%= design.price_per_sqft %></p>
+          <p>Square feet: <%= design.square_feet %></p>
+          <p>Category: <%= design.category %></p>
+          <p>Floorplan: <%= design.floorplan %></p>
+          <p>Time required: <%= design.time_required %> weeks</p>
+          <p>Bio: <%= design.bio %></p>
+          <p>Brief: <%= design.brief %></p>
+          <%= link_to "Show this design", design %>
+          <p><%= link_to 'Create Booking', new_booking_path(design_id: design.id) %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Architect not found</p>
+  <% end %>
 <% else %>
   <p>If you are the architect, you are not able to see all other architects and their works.</p>
 <% end %>
-
-

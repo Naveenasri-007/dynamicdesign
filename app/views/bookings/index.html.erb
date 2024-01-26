@@ -1,58 +1,59 @@
 <h1>Your Bookings</h1>
+
 <% if current_user.present? %>
-    <% if @bookings.any? %>
-
-        <% @bookings.each do |booking| %>
-    
-            <strong>Design Name:</strong> <%= booking.design_name %><br>
-            <strong>Design URL:</strong> <%= booking.design_url %><br>
-            <strong>Expected Amount:</strong> <%= booking.expected_amount %><br>
-            <strong>Expected Months:</strong> <%= booking.expected_months %><br>
-            <strong>Message:</strong> <%= booking.message %><br>
-
-            <!-- Assuming 'architect' is the association, adjust accordingly -->
-            <strong>Architect Name:</strong> <%= booking.architect.name %><br>
-            <strong>Architect Number:</strong> <%= booking.architect.number %><br>
-            <strong>Architect Email:</strong> <%= booking.architect.email %><br>
-
-            <strong>Status:</strong> <%= booking.status %><br>
-
-            </br></br>
-        <% end %>
-
-    <% else %>
-    <p>No bookings found.</p>
-    <% end %>
-<% elsif current_architect.present? %>
-    <% if @bookings.any? %>
-
+  <% if @bookings.any? %>
     <% @bookings.each do |booking| %>
+      <strong>Design Name:</strong> <%= booking.design_name %><br>
+      <strong>Design URL:</strong> <%= booking.design_url %><br>
+      <strong>Expected Amount:</strong> <%= booking.expected_amount %><br>
+      <strong>Expected Months:</strong> <%= booking.expected_months %><br>
+      <strong>Message:</strong> <%= booking.message %><br>
 
-        <strong>Design Name:</strong> <%= booking.design_name %><br>
-        <strong>Design URL:</strong> <%= booking.design_url %><br>
-        <strong>Expected Amount:</strong> <%= booking.expected_amount %><br>
-        <strong>Expected Months:</strong> <%= booking.expected_months %><br>
-        <strong>Message:</strong> <%= booking.message %><br>
+      <!-- Check if design is present before accessing its attributes -->
+      <% if booking.design.present? && booking.design.architect.present? %>
+        <strong>Architect Name:</strong> <%= booking.design.architect.name %><br>
+        <strong>Architect Number:</strong> <%= booking.design.architect.number %><br>
+        <strong>Architect Email:</strong> <%= booking.design.architect.email %><br>
+      <% else %>
+        <p>Architect information not available.</p>
+      <% end %>
 
-        <!-- Assuming 'User' is the association, adjust accordingly -->
+      <strong>Status:</strong> <%= booking.status %><br>
+      </br></br>
+    <% end %>
+  <% else %>
+    <p>No bookings found.</p>
+  <% end %>
+<% elsif current_architect.present? %>
+  <% if @bookings.any? %>
+    <% @bookings.each do |booking| %>
+      <strong>Design Name:</strong> <%= booking.design_name %><br>
+      <strong>Design URL:</strong> <%= booking.design_url %><br>
+      <strong>Expected Amount:</strong> <%= booking.expected_amount %><br>
+      <strong>Expected Months:</strong> <%= booking.expected_months %><br>
+      <strong>Message:</strong> <%= booking.message %><br>
+
+       <% if booking.user.present? %>
         <strong>User Name:</strong> <%= booking.user.name %><br>
         <strong>User Number:</strong> <%= booking.user.phone_number %><br>
         <strong>User Email:</strong> <%= booking.user.email %><br>
- 
-        <% if booking.status == 'Pending' %>
-          <%= button_to 'Accept', accept_booking_path(booking), method: :patch %>
-          <%= button_to 'Reject', reject_booking_path(booking), method: :patch %>
-        <% else %>
-          <strong>Status:</strong> <%= booking.status %><br>
-        <% end %>
+      <% else %>
+        <p>User information not available.</p>
+      <% end %>
       
 
-        </br></br>
-    <% end %>
+      <% if booking.status == 'Pending' %>
+        <%= button_to 'Accept', accept_booking_path(booking), method: :patch %>
+        <%= button_to 'Reject', reject_booking_path(booking), method: :patch %>
+      <% else %>
+        <strong>Status:</strong> <%= booking.status %><br>
+      <% end %>
 
-    <% else %>
-    <p>No bookings found.</p>
+      </br></br>
     <% end %>
+  <% else %>
+    <p>No bookings found.</p>
+  <% end %>
 <% else %>
-<p>You must be either an architect or a user to access this page.</p>
-<% end  %>
+  <p>You must be either an architect or a user to access this page.</p>
+<% end %>
