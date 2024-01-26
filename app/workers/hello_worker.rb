@@ -10,7 +10,7 @@ class HelloWorker
     #comments
     #bookings)
 
-    Architect (design , bookings)
+    #Architect (design , bookings)
     
     def destroy
       Worker.perform_asyn(user_id: params[:id])
