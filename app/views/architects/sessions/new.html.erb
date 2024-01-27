@@ -9,9 +9,6 @@
 </head>
 
 <body>
-
-<%= render '/common/navbar' %>
-
 <h1>Login Page</h1>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post, class: 'onlylog', id: 'form3' }) do |f| %>
   <div class="head_div">

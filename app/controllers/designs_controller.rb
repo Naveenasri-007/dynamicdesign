@@ -7,27 +7,27 @@ class DesignsController < ApplicationController
   def index
     if current_architect.present?
       if params[:design_name].present?
-        @pagy, @designs = pagy(current_architect.designs.where("design_name LIKE ?", "%#{params[:design_name]}%"), items: 2)
+        @pagy, @designs = pagy(current_architect.designs.where("design_name LIKE ?", "%#{params[:design_name]}%"), items: 12)
       elsif params[:category].present?
-        @pagy, @designs = pagy(current_architect.designs.where("category LIKE ?", "%#{params[:category]}%"), items: 2)
+        @pagy, @designs = pagy(current_architect.designs.where("category LIKE ?", "%#{params[:category]}%"), items: 12)
       elsif params[:sort] == 'likes'
-        @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 2)
+        @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 12)
       elsif params[:sort] == 'dislikes'
-        @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 2)
+        @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 12)
       else
-        @pagy, @designs = pagy(current_architect.designs, items: 2)
+        @pagy, @designs = pagy(current_architect.designs, items: 12)
       end
     else
       if params[:design_name].present?
-        @pagy, @designs = pagy(Design.where("design_name LIKE ?", "%#{params[:design_name]}%"),  items: 2)
+        @pagy, @designs = pagy(Design.where("design_name LIKE ?", "%#{params[:design_name]}%"),  items: 12)
       elsif params[:category].present?
-        @pagy, @designs = pagy(Design.where("category LIKE ?", "%#{params[:category]}%"),  items: 2)
+        @pagy, @designs = pagy(Design.where("category LIKE ?", "%#{params[:category]}%"),  items: 12)
       elsif params[:sort] == 'likes'
-        @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 2)
+        @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 12)
       elsif params[:sort] == 'dislikes'
-        @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 2)
+        @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 12)
       else
-        @pagy, @designs = pagy(Design.all ,  items: 2)
+        @pagy, @designs = pagy(Design.all ,  items: 12)
       end
     end
   end

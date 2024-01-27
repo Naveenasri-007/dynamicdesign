@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_065336) do
     t.bigint "architect_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "design_url", limit: 2000
+    t.string "design_url", limit: 2000, default: "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
     t.index ["architect_id"], name: "index_designs_on_architect_id"
   end
 

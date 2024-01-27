@@ -1,27 +1,50 @@
+<%= stylesheet_link_tag 'pagination' %>
+<%= stylesheet_link_tag 'design'%>
+
 <% if current_user.present? %>
   <% if @architect.present? %>
-    <div>
-      <h1><%= @architect.name %></h1>
-      <img src="<%= @architect.profile_photo %>" alt="Architect Photo">
-      <h5><%= @architect.email %></h5>
-
-      <% @architect.designs.each do |design| %>
-        <div>
-          <h5>Design name: <%= design.design_name %></h5>
-          <p>Design url: <%= design.design_url %></p>
-          <p>Style: <%= design.style %></p>
-          <p>Price per sqft: <%= design.price_per_sqft %></p>
-          <p>Square feet: <%= design.square_feet %></p>
-          <p>Category: <%= design.category %></p>
-          <p>Floorplan: <%= design.floorplan %></p>
-          <p>Time required: <%= design.time_required %> weeks</p>
-          <p>Bio: <%= design.bio %></p>
-          <p>Brief: <%= design.brief %></p>
-          <%= link_to "Show this design", design %>
-          <p><%= link_to 'Create Booking', new_booking_path(design_id: design.id) %></p>
-        </div>
+      <h2><%= @architect.name %></h2>
+    <div class="designs">
+      <% if @designs.present? %>
+        <% @designs.each do |design| %>
+          <div class="card">
+            <% if design.design_url.present? %>
+              <img src="<%= design.design_url %>" class="free_img" alt="Design Image">
+            <% else %>
+              <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "free_img" %>        
+            <% end %>
+            <div class="info">
+              <h3><%= design.design_name %></h3>
+              <div style="display: flex; column-gap: 20px;">
+                <div>
+                  <p>Price: <%= design.price_per_sqft * design.square_feet %></p>
+                </div>
+                <div>
+                  <% unless design.likes.blank? %>
+                    <p><%= design.likes.count %> <%= 'Like'.pluralize(design.likes.count) %></p>
+                  <% else %>
+                    <p>0 Like</p>
+                  <% end %>
+                </div>
+                <div>
+                  <% unless design.ratings.blank? %>
+                    <p>Average Rating: <%= design.ratings.average(:value).to_f.round(2) %></p>
+                  <% else %>
+                    <p>Average Rating: 0.0</p>
+                  <% end %>
+                </div>
+              </div>
+              <p><%= design.bio %></p>
+              <%= link_to "More details", design, class: "btn" %>
+              <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= image_tag "common/nodesign.png", alt: "interior design", class: "free_img", style: "width: auto;height: auto;" %>
       <% end %>
     </div>
+      
   <% else %>
     <p>Architect not found</p>
   <% end %>

@@ -1,12 +1,23 @@
+<%= stylesheet_link_tag 'architect'%>
 <% if current_user.present? %>
   <% if @architects.present? %>
-    <% @architects.each do |architect| %>
-      <h1><%= architect.name %></h1>
-      <p><%= architect.profile_photo %></p>
-      <p><%= architect.email %></p>
-      <p><%= architect.number %></p>
-      <p><%= link_to "Show this Architect", architect_path(id: architect.id) %></p>
-    <% end %>
+    <div class="all-architect-list">
+      <% @architects.each do |architect| %>
+        <div class="card">
+          <div class="cover-photo" style="background: url(<%= architect.profile_photo %>) no-repeat center center / cover;">
+          </div>
+          <h3 class="profile-name"><%= architect.name %></h3>
+          <div class="exp_div">
+            <p class="about"><%= architect.email %></p>
+          </div>
+          <div class="exp_div">
+            <p class="about"><%= architect.number %></p>
+          </div>
+          <%= link_to "Show this Architect", architect_path(id: architect.id), class: "btn" %>
+          <!-- You can add more buttons as needed -->
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <p>No architects available</p>
   <% end %>

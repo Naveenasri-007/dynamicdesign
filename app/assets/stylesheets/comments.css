@@ -1,0 +1,171 @@
+@import url('https://rsms.me/inter/inter.css');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#app {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  margin: 100px 0 30px 0;
+}
+
+.comments {
+  width: 500px;
+  max-width: 80%;
+  min-width: 300px;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  height: 700px; 
+  border: 1px solid #0f172a;
+}
+
+.comments h2 {
+  font-size: 2.3em;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.comments-form {
+  border-bottom: 1px solid #ccc;
+}
+
+.comments-form ul {
+  list-style: none;
+  margin-left: -40px;
+}
+
+.comments-form li {
+  margin-bottom: 15px;
+}
+
+.comments-form input[type='submit'] {
+  border: 0;
+  border-radius: 30px;
+  padding: 7px 16px;
+  background: #448ef6;
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.submit_btn {
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 10px 32px;
+    background: #448ef6;
+    color: #fff;
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
+.comments-form input[type='text'], .comments-form textarea {
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  background: #f7f7f7;
+}
+
+.comments-form input[type='text']::placeholder, .comments-form textarea::placeholder {
+  font-family: 'Rubik', sans-serif;
+}
+
+.comments-form input[type='text']:focus, .comments-form textarea:focus {
+  background: #fff;
+}
+.comments-list {
+    margin-top: 20px;
+    max-height: calc(700px - 100px); /* Adjust the max-height based on the total height of the comments section minus the form height */
+}
+
+.comments_list {
+    max-height: 450px; /* Set a maximum height for the scrollable container */
+    overflow-y: scroll;
+}
+.comment {
+  position: relative;
+  padding: 10px 20px;
+  background: #efefef;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+.comment .timestamp {
+  color: #777;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.comment h4, .comment p {
+  margin: 10px;
+}
+
+footer {
+  float: right;
+  color: #777;
+  font-size: 0.8em;
+  margin-top: 15px;
+}
+textarea{
+    width: 80%;
+    height: 60px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+textarea:focus {
+    background: #fff;
+}
+
+.comment-actions {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .edit-icon,
+  .delete-icon {
+    width: 20px; 
+    height: 20px;
+    margin-left: 5px; 
+  }
+
+
+button {
+    margin-top: 10px;
+    color: #cee1ff;
+    background-color: #28467f;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    width: auto;
+    border-radius: 12px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+/*button {
+    margin-top: 0px;
+    color: #cee1ff;
+    background-color: #ffffff;
+    font-size: 0px;
+    padding: 0px;
+    border: none;
+    width: auto;
+    border-radius: 0px;
+    font-weight: bolder;
+    cursor: pointer;
+}*/

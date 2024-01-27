@@ -1,9 +1,9 @@
 .mainimage {
-  width: 780px;
-  height: 520px;
+  width: 820px;
+  height: 464px;
 }
 .AboutArchitect {
-  padding: 20px 80px;
+  padding: 20px 90px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -16,16 +16,28 @@ pre {
   font-family: "Times New Roman", Times, serif;
   font-size: 23px;
 }
+.name{
+  color: #28467f;
+}
+.para{
+  width: 800px;
+  margin-left: 50px;
+} 
+.card{
+  margin-left: -64px;
+
+}
+
 .details {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.details div div {
+.AboutArchitect div div {
   width: 780px;
 }
 p {
-  font-size: 25px;
+  font-size: 16px;
 }
 span {
   font-size: 23px;
@@ -226,7 +238,7 @@ span {
   /* #about {
     width: 470px;
   } */
-  .details div div {
+  .AboutArchitect div div {
     width: 470px;
   }
 }
