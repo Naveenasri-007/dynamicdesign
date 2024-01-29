@@ -24,6 +24,8 @@
 				<%= link_to "Designs",designs_path, class: "a"  %>
 				<%= link_to "My Bookings", bookings_path, class: "a" %>
 				<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+                <%= button_to 'Delete Account', registration_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %>
+
 					<%#
 					< link_to "About us", >
 					< link_to "Contact us",  >
@@ -40,6 +42,7 @@
 	            <%= link_to "Designs",designs_path, class: "a"  %>
 		        <%= link_to "My Orders", bookings_path, class: "a" %>
 				<%= button_to "Sign out", destroy_architect_session_path, method: :delete %>
+				<%= button_to 'Delete Account', registration_path(current_architect), method: :delete, data: { confirm: 'Are you sure?' } %>
             <% else %>
 				<div id="button">
 					<div class="dropdown">

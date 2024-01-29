@@ -25,9 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super do
+     UserWorker.perform_async(user_id)
+    end 
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

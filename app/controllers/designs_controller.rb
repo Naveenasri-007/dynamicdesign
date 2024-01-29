@@ -47,6 +47,7 @@ class DesignsController < ApplicationController
       redirect_to design_path(@design)
     else
       flash[:alert] = 'Failed to create design'
+      flash[:errors] = @design.errors.full_messages
       render :new
     end
   end

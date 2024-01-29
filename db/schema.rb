@@ -54,15 +54,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_065336) do
   end
 
   create_table "designs", charset: "utf8mb4", force: :cascade do |t|
-    t.string "design_name"
-    t.string "style"
-    t.decimal "price_per_sqft", precision: 10
-    t.integer "square_feet"
-    t.string "category"
-    t.string "floorplan"
-    t.string "time_required"
-    t.string "bio"
-    t.text "brief"
+    t.string "design_name", null: false
+    t.string "style", null: false
+    t.decimal "price_per_sqft", precision: 10, null: false
+    t.integer "square_feet", null: false
+    t.string "category", null: false
+    t.string "floorplan", null: false
+    t.string "time_required", null: false
+    t.string "bio", null: false
+    t.text "brief", null: false
     t.bigint "architect_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

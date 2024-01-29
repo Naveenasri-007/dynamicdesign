@@ -10,7 +10,7 @@ gem 'pagy', '6.3.0'
 gem 'devise'
 gem "bootsnap", require: false
 gem "rspec"
-gem "sidekiq", "~> 6.0"
+gem "sidekiq", "~> 7.2.1"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -25,7 +25,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", ">= 4.0.1"
+gem "redis", '~> 5.0.8'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

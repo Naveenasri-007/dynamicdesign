@@ -25,9 +25,12 @@ class Architect::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super do
+      ArchitectWorker.perform_async(architect_id)
+    end
+  end
+  
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

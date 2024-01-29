@@ -1,6 +1,6 @@
 class Design < ApplicationRecord
   belongs_to :architect
-  belongs_to :booking
+  belongs_to :booking, optional: true
   has_many :likes, dependent: :delete_all
   has_many :ratings, dependent: :delete_all
   has_many :comments,dependent: :delete_all
