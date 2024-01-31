@@ -8,5 +8,4 @@ class ArchitectWorker
     architect = Architect.find(architect_id)
     architect.destroy
   end
-
 end

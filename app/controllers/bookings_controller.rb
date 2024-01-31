@@ -6,22 +6,24 @@ class BookingsController < ApplicationController
       @bookings = current_user.bookings
     elsif current_architect.present?
       @bookings = current_architect.bookings
-    end 
-  end
-
-  def show
-    @booking = Booking.find(params[:id])
+    end
   end
 
   def new
-    @design = Design.find(params[:design_id])
-    @booking = @design.bookings.build
-    @booking.architect_id = @design.architect_id 
+    @design = Design.find_by(id: params[:design_id])
+
+    if @design
+      @booking = @design.bookings.build
+      @booking.architect_id = @design.architect_id if @design.architect_id.present?
+    else
+      flash[:error] = 'Design not found.'
+      redirect_to designs_path
+    end
   end
 
   def create
     @booking = current_user.bookings.new(booking_params)
-  
+
     if @booking.save
       redirect_to architects_path, notice: 'Booking created successfully.'
     else
@@ -29,11 +31,12 @@ class BookingsController < ApplicationController
       render :new
     end
   end
-  
+
   private
 
   def booking_params
-    params.require(:booking).permit(:design_name, :design_url, :expected_amount, :expected_months, :message, :design_id, :architect_id)
+    params.require(:booking).permit(:design_name, :design_url, :expected_amount, :expected_months, :message,
+                                    :design_id, :architect_id)
   end
 
   def authenticate_architect_or_user
@@ -42,7 +45,7 @@ class BookingsController < ApplicationController
     elsif current_user
       authenticate_user!
     else
-      redirect_to root_path, alert: "You must be either an architect or a user to access this page."
+      redirect_to root_path, alert: 'You must be either an architect or a user to access this page.'
     end
   end
 end

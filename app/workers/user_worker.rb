@@ -11,4 +11,3 @@ class UserWorker
     user.destroy
   end
 end
-
