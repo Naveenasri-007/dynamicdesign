@@ -2,27 +2,27 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'has a valid factory' do
-    user = Fabricate(:user)
+    user = Fabricate.build(:user)
     expect(user).to be_valid
   end
 
-  it 'is invalid without an name' do 
-    user = Fabricate(:user, name: nil)
+  it 'is invalid without a name' do 
+    user = Fabricate.build(:user, name: nil)
     expect(user).to_not be_valid
   end
 
   it 'is invalid without an email' do
-    user = Fabricate(:user, email: nil)
+    user = Fabricate.build(:user, email: nil)
     expect(user).to_not be_valid
   end
 
-  it 'is invalid without an phone_number' do
-    user = Fabricate(:user, phone_number: nil)
+  it 'is invalid without a phone_number' do
+    user = Fabricate.build(:user, phone_number: nil)
     expect(user).to_not be_valid
   end
 
-  it 'is invalid without an password' do 
-    user = Fabricate(:user , password: nil)
+  it 'is invalid without a password' do 
+    user = Fabricate.build(:user, password: nil)
     expect(user).to_not be_valid
   end
 end

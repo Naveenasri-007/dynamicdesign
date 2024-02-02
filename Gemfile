@@ -34,6 +34,7 @@ group :development, :test do
   gem 'debug'
   gem 'fabrication'
   gem 'jsonapi-serializer'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
 end
 
@@ -42,6 +43,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'factory_bot_rails'
   gem 'json_matchers'
   gem 'rspec'
 end

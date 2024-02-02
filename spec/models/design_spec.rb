@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Design, type: :model do
+  
   it 'has a valid design' do
     # Create a valid Architect instance first
     architect = Fabricate(:architect)

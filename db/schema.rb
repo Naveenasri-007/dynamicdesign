@@ -31,9 +31,9 @@ ActiveRecord::Schema[7.1].define(version: 20_240_126_065_336) do
     t.datetime 'updated_at', null: false
     t.string 'design_name'
     t.string 'design_url'
-    t.integer 'expected_amount'
-    t.integer 'expected_months'
-    t.text 'message'
+    t.integer 'expected_amount', null: false
+    t.integer 'expected_months', null: false
+    t.text 'message', null: false
     t.string 'status', default: 'Pending'
     t.bigint 'user_id', null: false
     t.bigint 'architect_id', null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_126_065_336) do
   end
 
   create_table 'comments', charset: 'utf8mb4', force: :cascade do |t|
-    t.text 'content'
+    t.text 'content', null: false
     t.bigint 'user_id', null: false
     t.bigint 'design_id', null: false
     t.datetime 'created_at', null: false
@@ -66,7 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_126_065_336) do
     t.bigint 'architect_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'design_url', limit: 2000, default: 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'
+    t.string 'design_url', limit: 2000,
+                           default: 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg', null: false
     t.index ['architect_id'], name: 'index_designs_on_architect_id'
   end
 
@@ -80,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_126_065_336) do
   end
 
   create_table 'ratings', charset: 'utf8mb4', force: :cascade do |t|
-    t.integer 'value'
+    t.integer 'value', null: false
     t.bigint 'design_id', null: false
     t.bigint 'user_id', null: false
     t.datetime 'created_at', null: false
@@ -97,8 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_126_065_336) do
     t.datetime 'remember_created_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'name'
-    t.string 'phone_number'
+    t.string 'name', null: false
+    t.string 'phone_number', null: false
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
