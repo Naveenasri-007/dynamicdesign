@@ -1,3 +1,3 @@
 Fabricator(:rating) do
-  value 4
+  value   Faker::Number.positive.to_i
 end

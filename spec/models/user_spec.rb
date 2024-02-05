@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it 'is invalid without a name' do 
+  it 'is invalid without a name' do
     user = Fabricate.build(:user, name: nil)
     expect(user).to_not be_valid
   end
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
-  it 'is invalid without a password' do 
+  it 'is invalid without a password' do
     user = Fabricate.build(:user, password: nil)
     expect(user).to_not be_valid
   end

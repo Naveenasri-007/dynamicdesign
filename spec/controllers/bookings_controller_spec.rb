@@ -4,9 +4,7 @@ RSpec.describe BookingsController, type: :controller do
   let(:user) { Fabricate.create(:user) }
   let(:architect) { Fabricate.create(:architect) }
 
-  before do
-    sign_in user
-  end
+  before { sign_in user }
 
   describe 'GET #index' do
     context 'when user is signed in' do
@@ -75,8 +73,6 @@ RSpec.describe BookingsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid parameters' do
-      let(:user) { Fabricate.create(:user) }
-      let(:architect) { Fabricate.create(:architect) }
       let(:design) { Fabricate.create(:design, architect:) }
 
       it 'creates a new booking' do

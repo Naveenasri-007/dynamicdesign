@@ -45,14 +45,15 @@
               </div>
               <div>
                 <% if design.likes.present? %>
-                  <p><%= design.likes.count %> <%= (design.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+                  <p><%= design.likes.size %> <%= (design.likes.size) == 1 ? 'Like' : 'Likes'%></p>
                 <% else %>
                   <p>0 Like</p>
                 <% end %>
               </div>
               <div>
-                <% if  design.ratings.present? %>
-                  <p>Average Rating: <%= design.ratings.average(:value).to_f.round(2) %></p>
+                <% ratings = design.ratings %>
+                <% if ratings.present? %>
+                  <p>Average Rating: <%= (ratings.map(&:value).reduce(:+) / ratings.size.to_f).round(2) %></p>
                 <% else %>
                   <p>Average Rating: 0.0</p>
                 <% end %>

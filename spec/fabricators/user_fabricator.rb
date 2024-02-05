@@ -1,8 +1,6 @@
 Fabricator(:user) do
-  email                  'navee@gmail.com'
-  password               'Navee@123'
-  name                   'Naveenasri'
-  phone_number           '9876543212'
-  # Faker::PhoneNumber.phone_number
-  # Faker::Internet.password
+  email               Faker::Internet.email
+  password            Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true)
+  name                Faker::App.name
+  phone_number        Faker::PhoneNumber.subscriber_number(length: 10)
 end

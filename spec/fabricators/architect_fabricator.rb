@@ -1,7 +1,7 @@
 Fabricator(:architect) do
-  email 'aarthi@gmail.com'
-  password        'Navee@123'
-  name            'Aarthi'
-  number          '9876543212'
-  profile_photo   'https://media.designcafe.com/wp-content/uploads/2023/01/31151510/contemporary-interior-design-ideas-for-your-home.jpg'
+  email           Faker::Internet.email
+  password        Faker::Internet.password(min_length: 8, mix_case: true, special_characters: true)
+  name            Faker::App.name
+  number          Faker::PhoneNumber.subscriber_number(length: 10)
+  profile_photo   Faker::Internet.url
 end

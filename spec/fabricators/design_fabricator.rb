@@ -1,13 +1,12 @@
 Fabricator(:design) do
-  design_name 'classic traditional design'
-  style           'Traditional'
-  price_per_sqft  12.0
-  square_feet     1353
+  design_name     Faker::App.name
+  style           Faker::App.name
+  price_per_sqft  Faker::Number.positive.to_i
+  square_feet     Faker::Number.positive.to_i
   category       'livingroom'
   floorplan      '2BHK'
-  time_required  '2'
-  bio            'When it comes to interior design styles'
-  brief         'When it comes to interior design styles, almost everything is rooted in traditional interior design'
-  design_url    'https://media.designcafe.com/wp-content/uploads/2023/01/31151510/contemporary-interior-design-ideas-for-your-home.jpg'
-  architect_id 1
+  time_required   Faker::Number.positive.to_i
+  bio             Faker::Lorem.paragraph_by_chars(number: 40, supplemental: false)
+  brief           Faker::Lorem.paragraph_by_chars(number: 2000, supplemental: false)
+  design_url      Faker::Internet.url
 end

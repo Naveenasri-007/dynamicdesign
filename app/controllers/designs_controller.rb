@@ -8,46 +8,13 @@ class DesignsController < ApplicationController
                                                                                                    }
   before_action :set_design, only: %i[show edit update destroy]
   include Pagy::Backend
+  ITEMS_PER_PAGE = 12
 
   def index
     if current_architect.present?
-      respond_to do |format|
-        format.html do
-          if params[:design_name].present?
-            @pagy, @designs = pagy(current_architect.designs.where('design_name LIKE ?', "%#{params[:design_name]}%"),
-                                   items: 12)
-          elsif params[:category].present?
-            @pagy, @designs = pagy(current_architect.designs.where('category LIKE ?', "%#{params[:category]}%"),
-                                   items: 12)
-          elsif params[:sort] == 'likes'
-            @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'),
-                                   items: 12)
-          elsif params[:sort] == 'dislikes'
-            @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'),
-                                   items: 12)
-          else
-            @pagy, @designs = pagy(current_architect.designs, items: 12)
-          end
-        end
-        format.json { render json: current_architect.designs }
-      end
+      architect_index
     elsif current_user.present?
-      respond_to do |format|
-        format.html do
-          if params[:design_name].present?
-            @pagy, @designs = pagy(Design.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: 12)
-          elsif params[:category].present?
-            @pagy, @designs = pagy(Design.where('category LIKE ?', "%#{params[:category]}%"),  items: 12)
-          elsif params[:sort] == 'likes'
-            @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: 12)
-          elsif params[:sort] == 'dislikes'
-            @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: 12)
-          else
-            @pagy, @designs = pagy(Design.all, items: 12)
-          end
-        end
-        format.json { render json: Design.all }
-      end
+      user_index
     else
       render json: { error: 'Unauthorized access, try to login again' }, status: :forbidden
     end
@@ -72,77 +39,151 @@ class DesignsController < ApplicationController
   def create
     @design = current_architect.designs.new(design_params)
     if @design.save
-      respond_to do |format|
-        format.html do
-          flash[:notice] = 'Design added successfully!'
-          redirect_to design_path(@design)
-        end
-        format.json { render json: @design, status: :created }
-      end
+      design_create_save_respond
     else
-      respond_to do |format|
-        format.html do
-          flash[:alert] = 'Failed to create design'
-          flash[:errors] = @design.errors.full_messages
-          render :new
-        end
-        format.json { render json: { errors: @design.errors.full_messages }, status: :unprocessable_entity }
-      end
+      design_create_failed_respond
     end
   end
 
   def update
     if @design.architect == current_architect
       if @design.update(design_params)
-        respond_to do |format|
-          format.html do
-            flash[:notice] = 'Design updated successfully!'
-            redirect_to design_path(@design)
-          end
-          format.json { render json: @design, status: :ok }
-        end
+        design_update_success_respond
       else
-        respond_to do |format|
-          format.html do
-            flash[:alert] = 'Failed to update design'
-            render :edit
-          end
-          format.json { render json: { errors: @design.errors.full_messages }, status: :unprocessable_entity }
-        end
+        design_update_fail_respond
       end
     else
-      respond_to do |format|
-        format.html do
-          flash[:alert] = 'You do not have access to update this design.'
-          redirect_to designs_path
-        end
-        format.json { render json: { errors: 'You do not have access to update this design.' }, status: :forbidden }
-      end
+      design_update_by_user_respond
     end
   end
 
   def destroy
     if @design.architect == current_architect
       @design.destroy
-      respond_to do |format|
-        format.html do
-          flash[:notice] = 'Design deleted successfully!'
-          redirect_to designs_path
-        end
-        format.json { head :no_content }
-      end
+      design_destroy_respond
     else
-      respond_to do |format|
-        format.html do
-          flash[:alert] = 'You do not have access to delete this design.'
-          redirect_to designs_path
-        end
-        format.json { render json: { error: 'You do not have access to delete this design.' }, status: :forbidden }
-      end
+      design_destory_respond
     end
   end
 
   private
+
+  def design_create_save_respond
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'Design added successfully!'
+        redirect_to design_path(@design)
+      end
+      format.json { render json: @design, status: :created }
+    end
+  end
+
+  def design_create_failed_respond
+    respond_to do |format|
+      format.html do
+        flash[:alert] = 'Failed to save design'
+        flash[:errors] = @design.errors.full_messages
+        render :new
+      end
+      format.json { render json: { errors: @design.errors.full_messages }, status: :unprocessable_entity }
+    end
+  end
+
+  def design_update_success_respond
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'Design updated successfully!'
+        redirect_to design_path(@design)
+      end
+      format.json { render json: @design, status: :ok }
+    end
+  end
+
+  def design_update_fail_respond
+    respond_to do |format|
+      format.html do
+        flash[:alert] = 'Failed to update design'
+        render :edit
+      end
+      format.json { render json: { errors: @design.errors.full_messages }, status: :unprocessable_entity }
+    end
+  end
+
+  def design_update_by_user_respond
+    respond_to do |format|
+      format.html do
+        flash[:alert] = 'You do not have access to update this design.'
+        redirect_to designs_path
+      end
+      format.json { render json: { errors: 'You do not have access to update this design.' }, status: :forbidden }
+    end
+  end
+
+  def design_destroy_respond
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'Design deleted successfully!'
+        redirect_to designs_path
+      end
+      format.json { head :no_content }
+    end
+  end
+
+  def design_destory_respond
+    respond_to do |format|
+      format.html do
+        flash[:alert] = 'You do not have access to delete this design.'
+        redirect_to designs_path
+      end
+      format.json { render json: { error: 'You do not have access to delete this design.' }, status: :forbidden }
+    end
+  end
+
+  def architect_index
+    respond_to do |format|
+      format.html { architect_index_format }
+      format.json { render json: current_architect.designs }
+    end
+  end
+
+  def user_index
+    respond_to do |format|
+      format.html { user_index_format }
+      format.json { render json: Design.all }
+    end
+  end
+
+  def user_index_format
+    if params[:design_name].present?
+      @pagy, @designs = pagy(Design.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: ITEMS_PER_PAGE)
+    elsif params[:category].present?
+      @pagy, @designs = pagy(Design.where('category LIKE ?', "%#{params[:category]}%"),  items: ITEMS_PER_PAGE)
+    elsif params[:sort] == 'likes'
+      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: ITEMS_PER_PAGE)
+    elsif params[:sort] == 'dislikes'
+      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: ITEMS_PER_PAGE)
+    else
+      @pagy, @designs = pagy(Design.all.includes(:likes, :ratings), items: ITEMS_PER_PAGE)
+    end
+  end
+
+  def architect_index_format
+    if params[:design_name].present?
+      @pagy, @designs = pagy(current_architect.designs.where('design_name LIKE ?', "%#{params[:design_name]}%"),
+                             items: ITEMS_PER_PAGE)
+    elsif params[:category].present?
+      @pagy, @designs = pagy(current_architect.designs.where('category LIKE ?', "%#{params[:category]}%"),
+                             items: ITEMS_PER_PAGE)
+    elsif params[:sort] == 'likes'
+      @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'),
+                             items: ITEMS_PER_PAGE)
+    elsif params[:sort] == 'dislikes'
+      @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'),
+                             items: ITEMS_PER_PAGE)
+    else
+      @pagy, @designs = pagy(current_architect.designs.includes(:likes, :ratings), items: ITEMS_PER_PAGE)
+    end
+  end
 
   def check_auth
     authenticate_or_request_with_http_basic do |username, password|
@@ -153,17 +194,6 @@ class DesignsController < ApplicationController
 
   def set_design
     @design = Design.find_by(id: params[:id])
-    return if @design
-
-    respond_to do |format|
-      format.html do
-        return unless @design.nil?
-
-        flash[:alert] = 'Design not found'
-        redirect_to designs_path
-      end
-      format.json { render json: @design }
-    end
   end
 
   def design_params
