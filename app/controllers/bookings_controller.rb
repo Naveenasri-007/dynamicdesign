@@ -3,9 +3,9 @@ class BookingsController < ApplicationController
 
   def index
     if current_user.present?
-      @bookings = current_user.bookings
+      @bookings = current_user.bookings.includes(design: :architect)
     elsif current_architect.present?
-      @bookings = current_architect.bookings
+      @bookings = current_architect.bookings.includes(:user)
     end
   end
 

@@ -7,7 +7,6 @@
 <% if @design.present? %>
 
   <div class="AboutArchitect">
-
     <div class="photos">
       <% if @design.design_url.present? %>
         <img src="<%= @design.design_url %>" class="mainimage" id="mainimage" alt="Design Image">
@@ -15,7 +14,6 @@
         <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "mainimage" , id:"mainimage"%>
       <% end %>
     </div>
-
     <div>
       <pre>Design name             : <span id="dname"><%= @design.design_name %></span></pre>
       <pre>Style                          : <span><%= @design.style %></span></pre>
@@ -26,19 +24,18 @@
       <pre>Floor plan                 : <span><%= @design.floorplan %></span></pre>
       <pre>Required Months      : <span id="dates"><%= @design.time_required %> months</span></pre>
       <pre>likes                           : <span id="dates"><%= @design.likes.count %> </span></pre>
-
     </div>
-
+  </div>
 
   <div class="details">
     <div class="para">
-      <div class="details" style="margin-top:60px">
-
-        <% if current_user.present? %>
-            <% if @design.ratings.exists?(user_id: current_user.id) %>
+      <% if current_user.present? %>
+        <div class="details" style="margin-top:60px">
+          <% if @design.ratings.exists?(user_id: current_user.id) %>
               <!-- Edit Rating form -->
+              <% ratings = current_user.ratings.find_by(design_id: @design.id) %>
               <div>
-              <%= form_with(model: [@design, current_user.ratings.find_by(design_id: @design.id)], url: design_rating_path(@design, @design.ratings.first), method: :patch) do |form| %>
+                <%= form_with(model: [@design, ratings], url: design_rating_path(@design, ratings), method: :patch) do |form| %>
                 <%= form.label :value, 'Edit Rating' %>
                 <%= form.select :value, (1..5).to_a %>
                 <%= form.submit 'Update Rating' %>
@@ -46,119 +43,132 @@
               </div>
               <!-- Delete Rating button -->
               <div>
-              <%= button_to 'Delete Rating', design_rating_path(@design, current_user.ratings.find_by(design_id: @design.id)), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= button_to 'Delete Rating', design_rating_path(@design, ratings), method: :delete, data: { confirm: 'Are you sure?' } %>
               </div>
-              <% else %>
+          <% else %>
               <!-- New Rating form -->
               <%= form_with(model: [@design, Rating.new], url: design_ratings_path(@design), method: :post) do |form| %>
                 <%= form.label :value, 'Rating' %>
                 <%= form.select :value, (1..5).to_a %>
                 <%= form.submit 'Submit Rating' %>
               <% end %>
-            <% end %>
+          <% end %>
+            <!-- like button -->
+          <% if @design.likes.exists?(user: current_user) %>
+            <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>
           <% else %>
-            <div>
-              <% if @design.ratings && @design.ratings.present? %>
-                <p>Average Rating: <%= @design.ratings.average(:value).to_f.round(2) %></p>
-              <% else %>
-                <p>No ratings yet.</p>
-              <% end %>
-            </div>
-        <% end %>
-        <div>
-          <% if current_user.present? %>
-            <% if @design.likes.exists?(user: current_user) %>
-              <%= button_to 'Unlike', design_like_path(@design, @design.likes.find_by(user: current_user)), method: :delete %>
-            <% else %>
-              <%= button_to 'Like', design_likes_path(@design), method: :design %>
-            <% end %>
+            <%= button_to 'Like', design_likes_path(@design), method: :design %>
           <% end %>
         </div>
-      </div>
 
-      <br>
-      <br>
-      <div id="about">
-        <p style="font-size:25px">
-          About the design :<br>
-        </p>
-        <span id="para"><%= @design.bio %></span><br>
-      </div>
-      <div>
-        <span id="brief_para"> <%= @design.brief %></span>
-      </div>
+        <br>
+        <br>
+        <div id="about">
+          <p style="font-size:25px">
+            About the design :<br>
+          </p>
+          <span id="para"><%= @design.bio %></span><br>
+        </div>
+        <div>
+          <span id="brief_para"> <%= @design.brief %></span>
+        </div>
 
-      
-      <% if current_architect.present? && @design.architect == current_architect %>
-        <%= link_to "Edit this design", edit_design_path(@design) %> |
         <%= link_to "Back to designs", designs_path %>
-        <%= button_to "Destroy this design", @design, method: :delete %>
-      <% else %>
-        <%= link_to "Back to designs", designs_path %>
+      <% elsif @current_architect.present? %>
+        <div class="details" style="margin-top:60px">
+          <div>
+            <% ratings = @design.ratings %>
+            <% if ratings.present? %>
+              <p>Average Rating: <%= (ratings.map(&:value).reduce(:+) / ratings.size.to_f).round(2) %></p>
+            <% else %>
+              <p>Average Rating: 0.0</p>
+            <% end %>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div id="about">
+          <p style="font-size:25px">
+            About the design :<br>
+          </p>
+          <span id="para"><%= @design.bio %></span><br>
+        </div>
+        <div>
+          <span id="brief_para"> <%= @design.brief %></span>
+        </div>
+        <% if current_architect.present? && @design.architect == current_architect %>
+          <%= link_to "Edit this design", edit_design_path(@design) %> |
+          <%= link_to "Back to designs", designs_path %>
+          <%= button_to "Destroy this design", @design, method: :delete %>
+        <% end %>
       <% end %>
-      
-
     </div>
 
     <div>
-      <div>
-        <% if current_user.present? %>
-          <% if @design.architect.present? %>
-            <div class="all-architect-list">
-                <div class="card">
-                  <div class="cover-photo" style="background: url(<%= @design.architect.profile_photo %>) no-repeat center center / cover;">
-                  </div>
-                  <h3 class="profile-name"><%= @design.architect.name %></h3>
-                  <div class="exp_div">
-                    <p class="about"><%= @design.architect.email %></p>
-                  </div>
-                  <div class="exp_div">
-                    <p class="about"><%= @design.architect.number %></p>
-                  </div>
-                  <%= link_to "Show this Architect", architect_path(id: @design.architect.id), class: "btn" %>
-                  <!-- You can add more buttons as needed -->
-                </div>
+      <% if current_user.present? %>
+        <div class="all-architect-list">
+          <div class="card">
+            <div class="cover-photo" style="background: url(<%= @design.architect.profile_photo %>) no-repeat center center / cover;">
             </div>
-          <% else %>
-            <p>No architects available</p>
-          <% end %>
-        <% elsif @current_architect.present? %>
-          <p>comments for your design</p>
-        <% end %>
-      </div>
-
-      <div class="comments">
-        <h2>Comments</h2>
-        <% if current_user.present? %>
+            <h3 class="profile-name"><%= @design.architect.name %></h3>
+            <div class="exp_div">
+              <p class="about"><%= @design.architect.email %></p>
+            </div>
+            <div class="exp_div">
+              <p class="about"><%= @design.architect.number %></p>
+            </div>
+            <%= link_to "Show this Architect", architect_path(id: @design.architect.id), class: "btn" %>
+          </div>
+        </div>
+        <div class="comments">
+          <h2>Comments</h2>
           <%= form_with(model: [@design, @design.comments.build], url: design_comments_path(@design)) do |form| %>
             <%= form.text_area :content, placeholder: 'Add a comment...' %>
             <%= form.submit 'Post ✎', class: 'submit_btn' %>
             </br>
           <% end %>
-        <% end %>
-        </br>
-        <hr>
-        </br>
-        <div class="comments_list">
-          <% @design.comments.each do |comment| %>
-            <div class="comment">
-              <% if comment.user.present? %>
-                <strong class="name"><%= comment.user.name %>:</strong>
-              <% else %>
-                <!-- <p>Anonymous:</p> -->
-              <% end %>
-              <p>&emsp;&emsp;&emsp;<%= comment.content %></p>
-
-              <% if current_user.present? && current_user == comment.user %>
+          </br>
+          <hr>
+          </br>
+          <div class="comments_list">
+            <% @design.comments.includes(:user).each do |comment| %>
+              <div class="comment">
+                <% if comment.user.present? %>
+                  <strong class="name"><%= comment.user.name %>:</strong>
+                <% end %>
+                <p>&emsp;&emsp;&emsp;<%= comment.content %></p>
+                <% if current_user == comment.user %>
                 <div class="comment-actions">
-                    <%= link_to image_tag('common/edit_icon.jpg', class: 'edit-icon'), edit_design_comment_path(@design, comment) %>
-                    <%= button_to image_tag('common/delete_icon.jpg', class: 'delete-icon'), design_comment_path(@design, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to '✎', edit_design_comment_path(@design, comment), class: "edit-icon" %>
+                  <%= button_to "⌫", design_comment_path(@design, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-icon' %>
                 </div>
               <% end %>
-            </div>
-          <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+
+      <% elsif @current_architect.present? %>
+        <div>
+          <p>comments for your design</p>
+        </div>
+        <div class="comments">
+          <h2>Comments</h2>
+          </br>
+          <hr>
+          </br>
+          <div class="comments_list">
+            <% @design.comments.includes(:user).each do |comment| %>
+              <div class="comment">
+                <% if comment.user.present? %>
+                  <strong class="name"><%= comment.user.name %>:</strong>
+                <% end %>
+                <p>&emsp;&emsp;&emsp;<%= comment.content %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 

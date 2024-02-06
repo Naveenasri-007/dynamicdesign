@@ -20,15 +20,16 @@
                   <p>Price: <%= design.price_per_sqft * design.square_feet %></p>
                 </div>
                 <div>
-                  <% unless design.likes.blank? %>
-                    <p><%= design.likes.count %> <%= 'Like'.pluralize(design.likes.count) %></p>
+                  <% if design.likes.present? %>
+                    <p><%= design.likes.size %> <%= (design.likes.size) == 1 ? 'Like' : 'Likes'%></p>
                   <% else %>
                     <p>0 Like</p>
                   <% end %>
                 </div>
                 <div>
-                  <% unless design.ratings.blank? %>
-                    <p>Average Rating: <%= design.ratings.average(:value).to_f.round(2) %></p>
+                  <% ratings = design.ratings %>
+                  <% if ratings.present? %>
+                    <p>Average Rating: <%= (ratings.map(&:value).reduce(:+) / ratings.size.to_f).round(2) %></p>
                   <% else %>
                     <p>Average Rating: 0.0</p>
                   <% end %>

@@ -138,34 +138,32 @@ textarea:focus {
   
   .edit-icon,
   .delete-icon {
-    width: 20px; 
-    height: 20px;
+    width: 30px; 
+    height: 30px;
     margin-left: 5px; 
+    color: black;
+    margin-top: 0px;
+    /* color: #cee1ff; */
+    background-color: #efefef;
+    font-size: 20px;
+    padding: 0px;
+    border: none;
+    /* width: 10px; */
+    border-radius: 0px;
+    font-weight: bolder;
+    cursor: pointer;
   }
 
 
 button {
-    margin-top: 10px;
-    color: #cee1ff;
-    background-color: #28467f;
-    font-size: 20px;
-    padding: 10px;
-    border: none;
-    width: auto;
-    border-radius: 12px;
-    font-weight: bolder;
-    cursor: pointer;
+       /* margin-top: -11px; */
+    /* color: #cee1ff; */
+   
+    /* padding: 10px; */
+
+    /* width: auto; */
+    /* border-radius: 12px; */
+ 
 }
 
-/*button {
-    margin-top: 0px;
-    color: #cee1ff;
-    background-color: #ffffff;
-    font-size: 0px;
-    padding: 0px;
-    border: none;
-    width: auto;
-    border-radius: 0px;
-    font-weight: bolder;
-    cursor: pointer;
-}*/
+

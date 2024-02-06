@@ -12,7 +12,7 @@ class CustomController < ApplicationController
       flash[:error] = 'Architect not found'
       redirect_to architects_path
     else
-      @designs = @architect.designs
+      @designs = @architect.designs.includes(:likes, :ratings)
     end
   end
 

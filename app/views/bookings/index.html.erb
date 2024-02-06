@@ -1,17 +1,14 @@
 <%= stylesheet_link_tag 'booking_list' %>
-<% if current_user.present? %>
 
-  <div class="container">
-    
+  <div class="container">   
     <div class="list-of-customer">
       <% if @bookings.any? %>
         <% @bookings.each do |booking| %>
 
           <div id="a-form" class="design-form">
 
-           <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
-
-            <% if booking.design.present? && booking.design.architect.present? %>
+            <% if current_user.present? %>
+              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
               <div>
                 <pre>Name             : <span id="name"><%= booking.design.architect.name %></span></pre>
               </div>
@@ -21,36 +18,57 @@
               <div>
                 <pre>Phone number     : <span id="phoneNumber"><%= booking.design.architect.number %></span></pre>
               </div>
-            <% else %>
-              <p>Architect information not available.</p>
-            <% end %>
-
-            <div>
-              <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
-            </div>
-            <div>
-              <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
-            </div>
-            <div>
-              <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
-            </div>
-            <div style="display:flex">
-              <div style="margin-top:-20px"><pre>Message          : </pre></div>
-              <div><a class="button" href="#popup1">View Message</a></div>
-              <div id="popup1" class="overlay">
-                <div class="popup">
-                  <h2>Message</h2>
-                  <a class="close" href="#">&times;</a>
-                  <div class="content"><%= booking.message %></div>
-                </div>
+              <div>
+                <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
               </div>
-            </div>
-            <div class="both-btn">
-              <a class="verifybtn"><%= booking.status %></a>
-            </div>
+              <div>
+                <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
+              </div>
+              <div>
+                <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
+              </div>
+              <div>
+                <pre>Message          : <span id="message"><%= booking.message %></span></pre>
+              </div>
+              <div class="both-btn">
+                <a class="verifybtn"><%= booking.status %></a>
+              </div>
+            <% elsif current_architect.present? %>
+              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
 
-          </div>
-
+              <div>
+                <pre>Name             : <span id="name"><%= booking.user.name %></span></pre>
+              </div>
+              <div>
+                <pre>Email            : <span id="mail"><%= booking.user.email %></span></pre>
+              </div>
+              <div>
+                <pre>Phone number     : <span id="phoneNumber"><%= booking.user.phone_number %></span></pre>
+              </div>
+              <div>
+                <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
+              </div>
+              <div>
+                <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
+              </div>
+              <div>
+                <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
+              </div>
+              <div>
+                <pre>Message          : <span id="message"><%= booking.message %></span></pre>
+              </div>
+              <div class="both-btn">
+                <% if booking.status == 'Pending' %>
+                  <%= button_to 'Accept', accept_booking_path(booking), method: :patch, class: "verifybtn" %>
+                  <%= button_to 'Reject', reject_booking_path(booking), method: :patch, class: "verifybtn" %>          
+                <% else %>
+                  <a class="verifybtn"><%= booking.status %></a>
+                <% end %>
+              </div>
+            <% else %>
+              <p>You must be either an architect or a user to access this page.</p>
+            <% end %>
+              </div>
         <% end %>
       <% else %>
         <div>
@@ -59,71 +77,3 @@
       <% end %>
     </div>
   </div>
-
-<% elsif current_architect.present? %>
-  <div class="container">
-      
-  <div class="list-of-customer">
-    <% if @bookings.any? %>
-      <% @bookings.each do |booking| %>
-
-        <div id="a-form" class="design-form">
-
-        <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
-
-          <% if booking.user.present? %>
-            <div>
-              <pre>Name             : <span id="name"><%= booking.user.name %></span></pre>
-            </div>
-            <div>
-              <pre>Email            : <span id="mail"><%= booking.user.email %></span></pre>
-            </div>
-            <div>
-              <pre>Phone number     : <span id="phoneNumber"><%= booking.user.phone_number %></span></pre>
-            </div>
-          <% else %>
-            <p>User information not available.</p>
-          <% end %>
-
-          <div>
-            <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
-          </div>
-          <div>
-            <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
-          </div>
-          <div>
-            <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
-          </div>
-          <div style="display:flex">
-            <div style="margin-top:-20px"><pre>Message          : </pre></div>
-            <div><a class="button" href="#popup1">View Message</a></div>
-            <div id="popup1" class="overlay">
-              <div class="popup">
-                <h2>Message</h2>
-                <a class="close" href="#">&times;</a>
-                <div class="content"><%= booking.message %></div>
-              </div>
-            </div>
-          </div>
-          <div class="both-btn">
-            <% if booking.status == 'Pending' %>
-              <%= button_to 'Accept', accept_booking_path(booking), method: :patch, class: "verifybtn" %>
-              <%= button_to 'Reject', reject_booking_path(booking), method: :patch, class: "verifybtn" %>          
-            <% else %>
-              <a class="verifybtn"><%= booking.status %></a>
-            <% end %>
-          </div>
-
-        </div>
-
-      <% end %>
-    <% else %>
-      <div>
-        <%= image_tag "common/mybooking.png", alt: "interior design", class: "free_img", style: "width: auto; height: auto;" %>
-      </div>
-    <% end %>
-  </div>
-  </div>
-<% else %>
-  <p>You must be either an architect or a user to access this page.</p>
-<% end %>
