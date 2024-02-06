@@ -9,6 +9,11 @@
 .hold {
   width: 250px;
 }
+.arch_cover_photo{
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+
 /* header is ended */
 .exp_div {
   justify-content: center;
