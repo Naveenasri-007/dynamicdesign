@@ -5,19 +5,16 @@ Rails.application.routes.draw do
 
   match '/architects', to: 'custom#index', via: 'get'
   get '/architect/:id', to: 'custom#show', as: :architect
-
+  patch 'bookings/:id/:status', to: 'custom#update_status', as: :update_status
   get 'products/filter_by_category', to: 'products#filter_by_category'
 
-  resources :designs do
-    resources :designs, only: %i[index show new create edit update destroy]
+  resources :designs, only: %i[index show new create edit update destroy] do
     resources :likes, only: %i[create destroy]
     resources :ratings, only: %i[create edit update destroy]
     resources :comments, only: %i[create edit update destroy]
   end
 
-  resources :bookings, only: %i[index show new create]
-  patch 'bookings/:id/:status', to: 'custom#update_status', as: :update_status
-  resources :bookings do
+  resources :bookings, only: %i[index show new create] do
     member do
       patch 'accept'
       patch 'reject'
