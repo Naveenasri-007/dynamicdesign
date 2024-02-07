@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+  <%= stylesheet_link_tag "user_home", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+
+  <title>user home</title>
+    <style>
+        .section8 {
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            margin: 0px;
+            background-image: url(<%= image_tag('login_as_customer/home/image 1.jpg', alt: 'interior design') %>);
+        }
+
+        .faq-section{
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- header is ended -->
+<div class="section8" style="background-image: url('<%= asset_path('login_as_customer/home/image 1.jpg') %>');">
+    <div class="section1">
+        <div class="hold">
+            <div class="img2">Interior</div>
+            <div class="img3">design</div>
+        </div>
+        <div class="holder">
+            <div class="img2">
+                <%= image_tag('login_as_customer/home/image 2.jpg', alt: 'interior design', width: '250px', height:
+                '170px') %>
+            </div>
+            <div class="img3">
+                <%= image_tag('login_as_customer/home/image 3.jpg', alt: 'interior design', width: '250px', height:
+                '170px') %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- section2 is started -->
+<section class="section2 border">
+    <div>
+        <%= image_tag('login_as_customer/about_us/2nd.gif', alt: 'Interior design', width: '500px', height: '350px', class:
+        'home-img1') %>
+    </div>
+
+    <div class="About-interior-design">
+        <h2>About interior design</h2>
+        <p>
+            Interior design is the art and science of enhancing the interior of a building to achieve a healthier and
+            more aesthetically pleasing environment for the people using the space. An interior designer is someone who
+            plans, researches, coordinates, and manages such enhancement projects.
+        </p>
+    </div>
+</section>
+
+<!-- section3 is started -->
+<section class="section3 border">
+    <div class="why-us">
+        <h2>Why us?</h2>
+        <p>
+            Interior design is established in Interior Design, styling, photography, furniture selection services sales,
+            construction and project management. With over a decade of knowledge, they combined their interests to offer
+            clients a unique level of design and award-winning customer service experience.
+        </p>
+    </div>
+    <div>
+        <%= image_tag('login_as_customer/home/2nd.gif', class: 'home-img1', alt: 'Interior design', width: '500px',
+        height: '350px') %>
+    </div>
+</section>
+
+<!-- section4 is started -->
+<section class="section4 border">
+    <div class="sec_4">
+        <h2>Design gallery</h2>
+        <div>
+            <%= image_tag('login_as_customer/home/image 6.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 7.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 8.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 9.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 10.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 11.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 12.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 13.jpg', alt: 'interior design', class: 'free_img') %>
+            <%= image_tag('login_as_customer/home/image 14.jpg', alt: 'interior design', class: 'free_img') %>
+        </div>
+    </div>
+</section>
+
+<!-- section5 is started -->
+<section>
+    <div class="section5 border">
+        <div class="review">
+            <div>
+                <%= image_tag('common/person.png', alt: 'interior design', class: 'reviewer') %>
+                <h3>Meena</h3>
+                <p>Our experience with interior design was pleasurable because of the project managers. The work got
+                    done before 45 days just the way we wanted it to be.</p>
+            </div>
+        </div>
+        <div class="review">
+            <div>
+                <%= image_tag('common/person.png', alt: 'interior design', class: 'reviewer') %>
+                <h3>John peter</h3>
+                <p>I am really happy with the materials that were used and the timeline for the project. The reaction we
+                    got from our friends when they first saw our place was priceless</p>
+            </div>
+        </div>
+        <div class="review">
+            <div>
+                <%= image_tag('common/person.png', alt: 'interior design', class: 'reviewer') %>
+                <h3>Rohit Prasad</h3>
+                <p>A place where I can find peace. A home. That's exactly what interior design has helped me with. I'm
+                    very happy with the outcome.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="faq-section border">
+        <header>
+            <h2>FAQs</h2>
+            <p>Answers to the most frequently asked questions.</p>
+        </header>
+
+        <details>
+            <summary>
+                <h4>Why do I need an interior designer?</h4>
+                <span class="material-symbols-outlined">expand_more</span>
+            </summary>
+            <p>An interior designer can help you create a functional and
+                aesthetically pleasing living space by combining design expertise,
+                creativity, and industry knowledge. They can save you time, money,
+                and stress by helping you make informed decisions, maximizing your
+                budget, and ensuring that your design vision is executed
+                seamlessly.</p>
+        </details>
+
+        <hr>
+
+        <details>
+            <summary>
+                <h4>What services are included under home interior design?</h4>
+                <span class="material-symbols-outlined">expand_more</span>
+            </summary>
+            <p>Dynamic Design is your one-stop-shop for interior design
+                services. We offer end-to-end services for various spaces,
+                including modular interiors, false ceilings, civil work, painting,
+                electrical work, plumbing, flooring, and tiling. Browse our latest
+                designs for inspiration to kickstart your home interior journey.</p>
+        </details>
+
+        <hr>
+
+        <details>
+            <summary>
+                <h4>What are the trending interior design styles?</h4>
+                <span class="material-symbols-outlined">expand_more</span>
+            </summary>
+            <p>
+                Here's a curated list of top interior design styles in India that
+                you should watch out for when designing your dream home.<br>
+                1. Bohemian Style<br> 2. Modern Style<br> 3. Colonial
+                Style<br> 4. Indian Traditional<br> 5. Art Deco Style<br>
+                6. Industrial Interior Design<br> 7. Minimalist Interior
+                Design<br> 8. Scandinavian Interior Design
+            </p>
+        </details>
+
+        <hr>
+
+        <details>
+            <summary>
+                <h4>What is the best material for kitchen cabinets?</h4>
+                <span class="material-symbols-outlined">expand_more</span>
+            </summary>
+            <p>The best material for a modular kitchen is BWR(boiling water
+                resistant) / BWP (boiling water proof) ply. The other recommended
+                materials include particle board and high-density-high-moisture
+                resistant board, commonly known as HDHMR. These are core materials
+                for carcass/internal boxes.</p>
+        </details>
+
+        <hr>
+
+        <details>
+            <summary>
+                <h4>What is an average size bedroom?</h4>
+                <span class="material-symbols-outlined">expand_more</span>
+            </summary>
+            <p>The average size of a bedroom ranges from 10x10 to 12x16
+                sq.ft.</p>
+        </details>
+
+    </div>
+</section>
+</body>
+</html>

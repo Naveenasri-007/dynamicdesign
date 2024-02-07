@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Design Index</title>
+  <%= stylesheet_link_tag 'design'%>
+  <%= stylesheet_link_tag 'pagination' %>
+</head>
+<body>
+  <p style="color: green"><%= notice %></p>
+
+  <form>
+    <label for="design_name">Search By Name : </label>
+    <input type="text" name="design_name">
+    <input type="submit" value="Search">
+  </form>
+
+  <select id="category-filter" onchange="filterDesigns(this.value)">
+    <option value="">All Categories</option>
+    <option value="livingroom">Living Room</option>
+    <option value="bedroom">Bed Room</option>
+    <option value="kitchen">Kitchen</option>
+    <option value="bathroom">Bath Room</option>
+  </select>
+
+  <%= link_to "Sort by Likes", designs_path(sort: 'likes') %>
+  <%= link_to "Sort by Dislikes", designs_path(sort: 'dislikes') %> 
+
+    <div class="designs">
+    <% if @designs.present? %>
+      <% @designs.each do |design| %>
+        <div class="card">
+          <% if design.design_url.present? %>
+            <img src="<%= design.design_url %>" class="free_img" alt="Design Image">
+          <% else %>
+            <img src="no-picture-available-icon-1.jpg" alt="design image" class="free_img">
+          <% end %>
+          <div class="info">
+            <h3><%= design.design_name %></h3>
+            <div style="display: flex;column-gap: 20px;">
+              <div>
+                <p>Price: <%= design.price_per_sqft * design.square_feet %></p>
+              </div>
+              <div>
+                <% if design.likes.present? %>
+                  <p><%= design.likes.size %> <%= (design.likes.size) == 1 ? 'Like' : 'Likes'%></p>
+                <% else %>
+                  <p>0 Like</p>
+                <% end %>
+              </div>
+              <div>
+                <% ratings = design.ratings %>
+                <% if ratings.present? %>
+                  <p>Average Rating: <%= (ratings.map(&:value).reduce(:+) / ratings.size.to_f).round(2) %></p>
+                <% else %>
+                  <p>Average Rating: 0.0</p>
+                <% end %>
+              </div>
+            </div>
+            <p>
+              <%= design.bio %>
+            </p>
+            <%= link_to "More details", design, class: "btn" %>
+            <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
+
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= image_tag "common/nodesign.png", alt: "interior design", class: "free_img", style: "width: auto;height: auto;" %>
+    <% end %>
+  </div>
+
+  <%= pagy_bootstrap_nav(@pagy).html_safe %>
+
+  <% if current_architect.present? %>
+   <%= link_to "New design", new_design_path %>
+  <% end %>
+
+  <script>
+  function filterDesigns(category) {
+    if (category) {
+      window.location.href = `http://localhost:3000/designs?category=${category}`;
+    } else {
+      window.location.href = 'http://localhost:3000/designs';
+    }
+  }
+</script>
+ 
+</body>
+</html>
+
+
+

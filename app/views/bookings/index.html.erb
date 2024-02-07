@@ -1,0 +1,79 @@
+<%= stylesheet_link_tag 'booking_list' %>
+
+  <div class="container">   
+    <div class="list-of-customer">
+      <% if @bookings.any? %>
+        <% @bookings.each do |booking| %>
+
+          <div id="a-form" class="design-form">
+
+            <% if current_user.present? %>
+              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
+              <div>
+                <pre>Name             : <span id="name"><%= booking.design.architect.name %></span></pre>
+              </div>
+              <div>
+                <pre>Email            : <span id="mail"><%= booking.design.architect.email %></span></pre>
+              </div>
+              <div>
+                <pre>Phone number     : <span id="phoneNumber"><%= booking.design.architect.number %></span></pre>
+              </div>
+              <div>
+                <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
+              </div>
+              <div>
+                <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
+              </div>
+              <div>
+                <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
+              </div>
+              <div>
+                <pre>Message          : <span id="message"><%= booking.message %></span></pre>
+              </div>
+              <div class="both-btn">
+                <a class="verifybtn"><%= booking.status %></a>
+              </div>
+            <% elsif current_architect.present? %>
+              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
+
+              <div>
+                <pre>Name             : <span id="name"><%= booking.user.name %></span></pre>
+              </div>
+              <div>
+                <pre>Email            : <span id="mail"><%= booking.user.email %></span></pre>
+              </div>
+              <div>
+                <pre>Phone number     : <span id="phoneNumber"><%= booking.user.phone_number %></span></pre>
+              </div>
+              <div>
+                <pre>Design name      : <span id="designName"><%= booking.design_name %></span></pre>
+              </div>
+              <div>
+                <pre>Budget           : <span id="amount"><%= booking.expected_amount %></span></pre>
+              </div>
+              <div>
+                <pre>Expected Months  : <span id="time"><%= booking.expected_months %></span></pre>
+              </div>
+              <div>
+                <pre>Message          : <span id="message"><%= booking.message %></span></pre>
+              </div>
+              <div class="both-btn">
+                <% if booking.status == 'Pending' %>
+                  <%= button_to 'Accept', accept_booking_path(booking), method: :patch, class: "verifybtn" %>
+                  <%= button_to 'Reject', reject_booking_path(booking), method: :patch, class: "verifybtn" %>          
+                <% else %>
+                  <a class="verifybtn"><%= booking.status %></a>
+                <% end %>
+              </div>
+            <% else %>
+              <p>You must be either an architect or a user to access this page.</p>
+            <% end %>
+              </div>
+        <% end %>
+      <% else %>
+        <div>
+          <%= image_tag "common/mybooking.png", alt: "interior design", class: "free_img", style: "width: auto; height: auto;" %>
+        </div>
+      <% end %>
+    </div>
+  </div>

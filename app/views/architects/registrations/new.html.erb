@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <%= stylesheet_link_tag 'universe', 'architect_register' %>
+  <title>Architect Apply Form</title>
+</head>
+<body>
+<section class="all-form">
+  <div class="head_div">
+    <h2 class="head" style="margin-top: 5px;margin-bottom: 0px;">Architect Register</h2>
+  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+    <div class="full_form">
+      <div class="form">
+
+        <% if flash[:alert] %>
+          <div class="styledbutton" id="styledbuttonlogin">
+            <%= flash[:alert] %>
+          </div>
+          <br /> <br />
+        <% end %>
+
+        <h2 style="margin-top: -3px;">Personal Information</h2>
+
+
+        <div class="field">
+        <%= form.label :name, 'Name:' %>
+        <%= form.text_field :name, required: true, placeholder: 'Enter your name', value: @name %><br /><br />
+        </div>
+
+        <div class="field">
+        <%= form.label :profile_photo, 'ProfilePhoto:' %>
+        <%= form.text_field :profile_photo, required: true, placeholder: 'Enter your profile_photo', value: @profile_photo %><br /><br />
+        </div>
+
+        <div class="field">
+          <%= form.label :email, 'Email:' %>
+          <%= form.email_field :email, pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$', title: 'Make sure email should be in the correct pattern', required: true, placeholder: 'abc@gmail.com', value: @email %><br /><br />
+        </div>
+
+        <div class="field">
+        <%= form.label :number, 'Phone number:' %>
+        <%= form.text_field :number, required: true, pattern: '[6789]{1}[0-9]{9}', title: 'Phone number with 6-9 and remaining 9 digits with 0-9', placeholder: '9218457240', value: @number %><br /><br />
+        </div>
+
+      </div>
+
+      <div class="form">
+        <h2 style="margin-top: -3px;">Professional Information</h2>
+
+        <div class="field">
+        <%= form.label :password, 'Password:' %>
+        <%= form.password_field :password, pattern: '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$', title: 'Must contain at least one number and one uppercase and lowercase letter, at least 8 or more characters and must not contain space', required: true, value: @password %><br /><br />
+        </div>
+
+        <div class="field">
+          <label for="architect_password_confirmation">Password Confirmation:</label><br />
+          <input type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$" title="Must contain at least one number and one uppercase and lowercase letter, at least 8 or more characters and must not contain space" id="architect_password_confirmation" name="architect[password_confirmation]" autocomplete="new-password" />
+        </div>
+        <br /> <br />
+
+        
+        <div class="actions">
+        <%= form.button 'Sign up', type: 'submit' %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+
+  <br>
+</section>
+
+</body>
+</html>
+

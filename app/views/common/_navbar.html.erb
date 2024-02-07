@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Index Page</title>
+	<%= stylesheet_link_tag "universe", "data-turbo-track": "reload" %>
+	<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+</head>
+
+<body>
+	<header class="header">
+		<div>
+			<a href=""> 
+			  <%= image_tag('common/logo.png', alt: 'logo', class:'logo') %>
+			</a>          
+		</div>
+		<nav class="nav">
+
+			<% if user_signed_in? %>
+				<div> Welcome  User <%= current_user.email %> </div>
+				<%= link_to "Home", root_path, class: "a" %>
+				<%= link_to "Architects", architects_path , class: "a" %>
+				<%= link_to "Designs",designs_path, class: "a"  %>
+				<%= link_to "My Bookings", bookings_path, class: "a" %>
+				<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+                <%= button_to 'Delete Account', registration_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+					<%#
+					< link_to "About us", >
+					< link_to "Contact us",  >
+					<a class="a" href="user_about_us.jsp">About us</a>
+					<a class="a" href="user_contact_us.jsp">Contact us</a>
+					<a class="a" href="user_profile.jsp"> 
+					<img src="<%=request.getContextPath()/assets/image/common/profile.png" alt="profile" class="profileofuser">
+					</a>
+					%>
+			<% elsif architect_signed_in? %>
+				<div> Welcome Architect <%= current_architect.email %> </div>
+				<%= link_to "Home", root_path, class: "a" %>
+				<%= link_to "Create Design", new_design_path , class: "a" %>
+	            <%= link_to "Designs",designs_path, class: "a"  %>
+		        <%= link_to "My Orders", bookings_path, class: "a" %>
+				<%= button_to "Sign out", destroy_architect_session_path, method: :delete %>
+				<%= button_to 'Delete Account', registration_path(current_architect), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% else %>
+				<div id="button">
+					<div class="dropdown">
+						<button class="dropbtn">Login</button>
+						<div class="dropdown-content">
+						<%= link_to "Login as Customer" , new_user_session_path %>
+						<%= link_to "Login as Architect" , new_architect_session_path%>
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">Register</button>
+						<div class="dropdown-content">
+							<%= link_to "Register as Customer", new_user_registration_path %>
+							<%= link_to "Register as Architect", new_architect_registration_path %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</nav>
+	</header>
+</body>
+
+</html>
+

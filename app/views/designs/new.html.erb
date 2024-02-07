@@ -1,0 +1,15 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render "form", design: @design %>
+
+<br>
+
+<div>
+  <%= link_to "Back to designs", designs_path %>
+</div>

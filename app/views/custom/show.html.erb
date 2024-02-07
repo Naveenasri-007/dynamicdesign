@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag 'pagination' %>
+<%= stylesheet_link_tag 'design'%>
+
+<% if current_user.present? %>
+  <% if @architect.present? %>
+      <h2><%= @architect.name %></h2>
+    <div class="designs">
+      <% if @designs.present? %>
+        <% @designs.each do |design| %>
+          <div class="card">
+            <% if design.design_url.present? %>
+              <img src="<%= design.design_url %>" class="free_img" alt="Design Image">
+            <% else %>
+              <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "free_img" %>        
+            <% end %>
+            <div class="info">
+              <h3><%= design.design_name %></h3>
+              <div style="display: flex; column-gap: 20px;">
+                <div>
+                  <p>Price: <%= design.price_per_sqft * design.square_feet %></p>
+                </div>
+                <div>
+                  <% if design.likes.present? %>
+                    <p><%= design.likes.size %> <%= (design.likes.size) == 1 ? 'Like' : 'Likes'%></p>
+                  <% else %>
+                    <p>0 Like</p>
+                  <% end %>
+                </div>
+                <div>
+                  <% ratings = design.ratings %>
+                  <% if ratings.present? %>
+                    <p>Average Rating: <%= (ratings.map(&:value).reduce(:+) / ratings.size.to_f).round(2) %></p>
+                  <% else %>
+                    <p>Average Rating: 0.0</p>
+                  <% end %>
+                </div>
+              </div>
+              <p><%= design.bio %></p>
+              <%= link_to "More details", design, class: "btn" %>
+              <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= image_tag "common/nodesign.png", alt: "interior design", class: "free_img", style: "width: auto;height: auto;" %>
+      <% end %>
+    </div>
+      
+  <% else %>
+    <p>Architect not found</p>
+  <% end %>
+<% else %>
+  <p>If you are the architect, you are not able to see all other architects and their works.</p>
+<% end %>

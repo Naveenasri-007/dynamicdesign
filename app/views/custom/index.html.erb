@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'architect'%>
+<% if current_user.present? %>
+  <% if @architects.present? %>
+    <div class="all-architect-list">
+      <% @architects.each do |architect| %>
+        <div class="card">
+          <div class="cover-photo">
+            <img class="arch_cover_photo" src="<%= architect.profile_photo  %>" >
+          </div>
+          <h3 class="profile-name"><%= architect.name %></h3>
+          <div class="exp_div">
+            <p class="about"><%= architect.email %></p>
+          </div>
+          <div class="exp_div">
+            <p class="about"><%= architect.number %></p>
+          </div>
+          <%= link_to "Show this Architect", architect_path(id: architect.id), class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No architects available</p>
+  <% end %>
+<% elsif @current_architect.present? %>
+  <p>If you are the architect, you are not able to see all other architects and their works.</p>
+<% end %>

@@ -1,0 +1,237 @@
+@charset "ISO-8859-1";
+/* header is started */
+
+.hold {
+  width: 250px;
+}
+
+#button {
+  margin-left: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  width: -webkit-fill-available;
+  width: 500px;
+}
+/* header is ended */
+/* drop down */
+
+section div {
+  padding: 15px 0px;
+}
+.stepsimgdiv {
+  width: 320px;
+}
+.stepimg {
+  margin-top: 10px;
+  margin-left: 23px;
+  height: 170px;
+  width: 270px;
+  border-radius: 3px;
+}
+
+.dropbtn {
+  color: white;
+  background-color: #28467f;
+  border-radius: 7px;
+  margin-top: 30px;
+  margin-left: 70px;
+  width: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  margin-left: 100px;
+  position: absolute;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+}
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.number {
+  font-size: 120px;
+  margin: 0px;
+  padding: 0px;
+  font-weight: bold;
+}
+.plan {
+  width: 250px;
+  text-align: center;
+  border: 2px solid #28467f;
+  height: 530px;
+  padding: 15px;
+}
+.plan p {
+  text-align: left;
+}
+.steps {
+  display: flex;
+
+  justify-content: space-evenly;
+  padding: 10px;
+}
+.six-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 85%;
+}
+.history p {
+  width: 500px;
+}
+.review {
+  width: 400px;
+  text-align: center;
+}
+.Testimonial {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.Our-works {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+.works {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 1500px;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  margin-top: 10px;
+  color: #cee1ff;
+  background-color: #28467f;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  width: auto;
+  border-radius: 12px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.all-btn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* question and answer */
+
+.faq-section {
+  width: 750px;
+  background-color: #ffff;
+  font-family: "Lato", sans-serif;
+  padding: 20px 315px;
+  margin-bottom: 20px;
+}
+
+header > p {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 38px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+span {
+  cursor: pointer;
+  margin-top: 4px;
+  color: #28467f;
+}
+
+summary {
+  font-size: 20px;
+  color: #28467f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+summary::marker {
+  display: none;
+  content: "";
+}
+
+details > p {
+  max-width: 650px;
+  color: #000000;
+  font-size: 18px;
+  line-height: 155%;
+  letter-spacing: 0.1px;
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+/* question and answer */
+/* phone resposive */
+@media screen and (max-width: 600px) {
+  .free-img {
+    height: 200px;
+    width: 350px;
+  }
+  .history p {
+    width: 400px;
+  }
+  .works {
+    margin-left: 30px;
+  }
+  .team-work-img {
+    width: 350px;
+  }
+  .steps {
+    display: block;
+  }
+  .faq-section {
+    width: auto;
+    padding: 24px;
+  }
+}
