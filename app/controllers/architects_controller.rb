@@ -1,7 +1,7 @@
-class CustomController < ApplicationController
+class ArchitectsController < ApplicationController
   before_action :authenticate_architect!, only: [:update_status], if: -> { current_architect.present? }
   before_action :authenticate_user!, only: %i[index show], if: -> { current_user.present? }
-
+  # before_action :validate_params, only: [update_status]
   def index
     @architects = Architect.all
   end
@@ -27,5 +27,9 @@ class CustomController < ApplicationController
     else
       redirect_to bookings_path, alert: 'Invalid status.'
     end
+  end
+
+  def validate_params
+    params.require(:architect).permit(:status)
   end
 end

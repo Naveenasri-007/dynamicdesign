@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   devise_for :architects
   devise_for :users
 
-  match '/architects', to: 'custom#index', via: 'get'
-  get '/architect/:id', to: 'custom#show', as: :architect
-  patch 'bookings/:id/:status', to: 'custom#update_status', as: :update_status
+  patch 'bookings/:id/:status', to: 'architects#update_status', as: :update_status
   get 'products/filter_by_category', to: 'products#filter_by_category'
+
+  resources :architects, only: %i[index show]
 
   resources :designs, only: %i[index show new create edit update destroy] do
     resources :likes, only: %i[create destroy]

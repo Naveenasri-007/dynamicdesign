@@ -9,9 +9,9 @@
         <% @designs.each do |design| %>
           <div class="card">
             <% if design.design_url.present? %>
-              <img src="<%= design.design_url %>" class="free_img" alt="Design Image">
+              <%= image_tag "#{design.design_url}" rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg' %>
             <% else %>
-              <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "free_img" %>        
+              <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "free_img" %>
             <% end %>
             <div class="info">
               <h3><%= design.design_name %></h3>

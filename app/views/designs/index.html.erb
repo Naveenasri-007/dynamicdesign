@@ -33,7 +33,7 @@
       <% @designs.each do |design| %>
         <div class="card">
           <% if design.design_url.present? %>
-            <img src="<%= design.design_url %>" class="free_img" alt="Design Image">
+            <%= image_tag "#{design.design_url}" rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg' %>
           <% else %>
             <img src="no-picture-available-icon-1.jpg" alt="design image" class="free_img">
           <% end %>
@@ -63,8 +63,9 @@
               <%= design.bio %>
             </p>
             <%= link_to "More details", design, class: "btn" %>
-            <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
-
+            <% if current_user.present?%>
+              <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
+            <% end %>
           </div>
         </div>
       <% end %>

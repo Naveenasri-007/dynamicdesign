@@ -5,7 +5,7 @@
       <% @architects.each do |architect| %>
         <div class="card">
           <div class="cover-photo">
-            <img class="arch_cover_photo" src="<%= architect.profile_photo  %>" >
+            <img src="<%= architect.profile_photo.present? ? architect.profile_photo : 'https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png' %>" class="arch_cover_photo" />
           </div>
           <h3 class="profile-name"><%= architect.name %></h3>
           <div class="exp_div">
@@ -21,6 +21,6 @@
   <% else %>
     <p>No architects available</p>
   <% end %>
-<% elsif @current_architect.present? %>
+<% elsif current_architect.present? %>
   <p>If you are the architect, you are not able to see all other architects and their works.</p>
 <% end %>

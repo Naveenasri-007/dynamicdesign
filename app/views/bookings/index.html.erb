@@ -4,11 +4,9 @@
     <div class="list-of-customer">
       <% if @bookings.any? %>
         <% @bookings.each do |booking| %>
-
           <div id="a-form" class="design-form">
-
             <% if current_user.present? %>
-              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
+              <img src="<%= booking.design_url.present? ? booking.design_url : 'https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png' %>" class="designurl"  id="designUrl" alt="interior design"/>
               <div>
                 <pre>Name             : <span id="name"><%= booking.design.architect.name %></span></pre>
               </div>

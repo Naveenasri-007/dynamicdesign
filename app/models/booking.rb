@@ -12,4 +12,6 @@ class Booking < ApplicationRecord
   validates_presence_of :design_name, message: 'Design name is null or empty'
   validates_presence_of :design_url, message: 'Design URL is null or empty'
   validates_presence_of :message, message: 'Message is null or empty'
+  # validates :status, inclusion: { in: %w[accepted rejected], message: 'Invalid status.' }
+
 end
