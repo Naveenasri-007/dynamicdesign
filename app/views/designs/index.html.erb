@@ -33,7 +33,7 @@
       <% @designs.each do |design| %>
         <div class="card">
           <% if design.design_url.present? %>
-            <%= image_tag "#{design.design_url}" rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg' %>
+            <%= image_tag "#{design.design_url}", class: "free_img"  rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg' , class: "free_img" %>
           <% else %>
             <img src="no-picture-available-icon-1.jpg" alt="design image" class="free_img">
           <% end %>
@@ -63,8 +63,11 @@
               <%= design.bio %>
             </p>
             <%= link_to "More details", design, class: "btn" %>
-            <% if current_user.present?%>
+            <% if current_user.present? %>
               <%= link_to "Create Booking", new_booking_path(design_id: design.id), class: "editdes" %>
+            <% elsif current_architect.present? && design.architect == current_architect %>
+              <%= link_to "Edit design", edit_design_path(design.id), class: "editdes" %>
+              <%= link_to "Delete design", design , method: :delete, data: { confirm: 'Are you sure?' }, class: "editdes" %>
             <% end %>
           </div>
         </div>

@@ -1,3 +1,9 @@
+# frozen_string_literal: true
+
+# Represents a design model in the application.
+# Designs are associated with architects, bookings, likes, ratings, comments, and bookings.
+# They have various validations for fields such as design_name, design_url, price_per_sqft, etc.
+# The class also defines scopes for sorting designs by likes and dislikes.
 class Design < ApplicationRecord
   belongs_to :architect
   belongs_to :booking, optional: true

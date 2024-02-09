@@ -5,7 +5,11 @@
       <% @architects.each do |architect| %>
         <div class="card">
           <div class="cover-photo">
-            <img src="<%= architect.profile_photo.present? ? architect.profile_photo : 'https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png' %>" class="arch_cover_photo" />
+            <% if architect.profile_photo.present? %>
+              <%= image_tag "#{architect.profile_photo}", class:"arch_cover_photo" rescue image_tag 'https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png', class:"arch_cover_photo" %>
+            <% else %>
+              <%= image_tag "https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png", alt: "design image", class: "arch_cover_photo" %>
+            <% end %>
           </div>
           <h3 class="profile-name"><%= architect.name %></h3>
           <div class="exp_div">

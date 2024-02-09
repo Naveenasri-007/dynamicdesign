@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/workers/architect_worker_spec.rb
 
 require 'rails_helper'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '3.2.2'
@@ -36,9 +38,6 @@ group :development, :test do
   gem 'jsonapi-serializer'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-end
-
-group :development do
 end
 
 group :test do

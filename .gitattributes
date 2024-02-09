@@ -1,2 +1,4 @@
+# frozen_string_literal: true
+
 # Auto detect text files and perform LF normalization
-* text=auto
+auto

@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'sidekiq'
 
+# UserWorker is a Sidekiq worker responsible for performing tasks related to Users.
+# It includes functionality to find and delete an user by ID.
 class UserWorker
   include Sidekiq::Worker
   sidekiq_options retry: false

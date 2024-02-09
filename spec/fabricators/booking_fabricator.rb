@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:booking) do
   expected_amount Faker::Number.positive.to_i
   expected_months Faker::Number.positive.to_i

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Controller responsible for handling bookings, including index, creation, and authentication checks.
+# The bookings are associated with designs and involve interaction between architects and users.
 class BookingsController < ApplicationController
   before_action :authenticate_architect_or_user
 

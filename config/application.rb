@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 %w[
@@ -12,6 +14,9 @@ end
 Bundler.require(*Rails.groups)
 
 module Dynamicdesign
+  # The Application class is the main configuration file for the Rails application.
+  # It initializes configuration defaults, autoloads libraries, and sets various
+  # application-wide settings.
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1

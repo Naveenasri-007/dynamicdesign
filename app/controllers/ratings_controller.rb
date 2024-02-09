@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# RatingsController handles the CRUD operations for user ratings on designs.
+# Users need to be authenticated before accessing any actions.
 class RatingsController < ApplicationController
   before_action :authenticate_user!
 
@@ -8,18 +12,20 @@ class RatingsController < ApplicationController
     if existing_rating
       redirect_to @design, alert: 'You have already rated this design.'
     else
-      @rating = @design.ratings.new(rating_params)
-      @rating.user = current_user
-
-      if @rating.save
-        redirect_to @design, notice: 'Rating added successfully.'
-      else
-        redirect_to @design, alert: 'Failed to add rating.'
-      end
+      without_existing_rating
     end
   end
 
-  def edit; end
+  def without_existing_rating
+    @rating = @design.ratings.new(rating_params)
+    @rating.user = current_user
+
+    if @rating.save
+      redirect_to @design, notice: 'Rating added successfully.'
+    else
+      redirect_to @design, alert: 'Failed to add rating.'
+    end
+  end
 
   def update
     @design = Design.find(params[:design_id])

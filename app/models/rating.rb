@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# The Rating class represents the ratings given by users to designs.
+# It belongs to a design and a user and validates that the value is
+# between 1 and 5.
 class Rating < ApplicationRecord
   belongs_to :design
   belongs_to :user

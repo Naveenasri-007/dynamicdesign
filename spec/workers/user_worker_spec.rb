@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/workers/user_worker_spec.rb
 
 require 'rails_helper'
@@ -25,6 +27,5 @@ RSpec.describe UserWorker, type: :worker do
         expect { UserWorker.new.perform(user.id) }.not_to raise_error
       end
     end
-
   end
 end

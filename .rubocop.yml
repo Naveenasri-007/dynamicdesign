@@ -1,0 +1,14 @@
+# default configs
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/'
+    - '.irbrc'
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+
+Metrics/BlockLength:
+  AllowedMethods: ['describe', 'context', 'controller', 'before']

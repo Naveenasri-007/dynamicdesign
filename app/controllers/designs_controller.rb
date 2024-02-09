@@ -1,33 +1,32 @@
+# frozen_string_literal: true
+
+# DesignsController handles actions related to architect , such as creating, updating,
+# and deleting designs. It also includes methods for displaying designs to users and architects.
+# This controller requires authentication for certain actions, and supports both HTML and JSON formats.
+# Pagination using the Pagy gem is integrated for better user experience.
 class DesignsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :check_auth, if: proc { |c| c.request.format.json? }
-
   before_action :authenticate_user!, only: %i[index show], if: -> { current_user.present? }
-  before_action :authenticate_architect!, only: %i[index show new create edit update destroy], if: lambda {
-                                                                                                     current_architect.present?
-                                                                                                   }
+  before_action :authenticate_architect!, only: %i[index show new create edit update destroy],
+                                          if: -> { current_architect.present? }
   before_action :set_design, only: %i[show edit update destroy]
+  before_action :load_designs, only: %i[index]
   include Pagy::Backend
   ITEMS_PER_PAGE = 12
 
   def index
-    if current_architect.present?
-      architect_index
-    elsif current_user.present?
-      user_index
-    else
-      render json: { error: 'Unauthorized access, try to login again' }, status: :forbidden
+    respond_to do |format|
+      format.html { index_format_for_design }
+      format.json do
+        render json: index_format_for_design
+      end
     end
   end
 
   def show
     respond_to do |format|
-      format.html do
-        return unless @design.nil?
-
-        flash[:alert] = 'Design not found'
-        redirect_to designs_path
-      end
+      format.html { show_html_response }
       format.json { render json: @design }
     end
   end
@@ -38,36 +37,66 @@ class DesignsController < ApplicationController
 
   def create
     @design = current_architect.designs.new(design_params)
-    if @design.save
-      design_create_save_respond
-    else
-      design_create_failed_respond
-    end
+    @design.save ? design_create_save_respond : design_create_failed_respond
   end
 
   def update
-    if @design.architect == current_architect
-      if @design.update(design_params)
-        design_update_success_respond
-      else
-        design_update_fail_respond
-      end
-    else
-      design_update_by_user_respond
-    end
+    @design.architect == current_architect ? design_update : design_update_by_user_respond
   end
 
   def destroy
-    if @design.architect == current_architect
-      @design.destroy
-      design_destroy_respond
-    else
-      design_destory_respond
-    end
+    @design.architect == current_architect ? design_destroy : design_destory_fail_respond
   end
 
   private
 
+  # index
+  def load_designs
+    if current_user.present?
+      @design = Design.all.includes(:likes, :ratings)
+    elsif current_architect.present?
+      @design = current_architect.designs.includes(:likes, :ratings)
+    end
+  end
+
+  def index_format_for_design
+    if params[:design_name].present? then search_by_design_name
+    elsif params[:category].present? then search_by_category
+    elsif params[:sort].in?(%w[likes dislikes]) then send("sort_by_#{params[:sort]}")
+    else
+      default_search
+    end
+  end
+
+  def search_by_design_name
+    @pagy, @designs = pagy(@design.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: ITEMS_PER_PAGE)
+  end
+
+  def search_by_category
+    @pagy, @designs = pagy(@design.where('category LIKE ?', "%#{params[:category]}%"), items: ITEMS_PER_PAGE)
+  end
+
+  def sort_by_likes
+    @pagy, @designs = pagy(@design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: ITEMS_PER_PAGE)
+  end
+
+  def sort_by_dislikes
+    @pagy, @designs = pagy(@design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: ITEMS_PER_PAGE)
+  end
+
+  def default_search
+    @pagy, @designs = pagy(@design, items: ITEMS_PER_PAGE)
+  end
+
+  # show
+  def show_html_response
+    return unless @design.nil?
+
+    flash[:alert] = 'Design not found'
+    redirect_to designs_path
+  end
+
+  # create
   def design_create_save_respond
     respond_to do |format|
       format.html do
@@ -87,6 +116,11 @@ class DesignsController < ApplicationController
       end
       format.json { render json: { errors: @design.errors.full_messages }, status: :unprocessable_entity }
     end
+  end
+
+  # update
+  def design_update
+    @design.update(design_params) ? design_update_success_respond : design_update_fail_respond
   end
 
   def design_update_success_respond
@@ -119,7 +153,13 @@ class DesignsController < ApplicationController
     end
   end
 
-  def design_destroy_respond
+  # destroy
+  def design_destroy
+    @design.destroy
+    design_destroy_success_respond
+  end
+
+  def design_destroy_success_respond
     respond_to do |format|
       format.html do
         flash[:notice] = 'Design deleted successfully!'
@@ -129,7 +169,7 @@ class DesignsController < ApplicationController
     end
   end
 
-  def design_destory_respond
+  def design_destory_fail_respond
     respond_to do |format|
       format.html do
         flash[:alert] = 'You do not have access to delete this design.'
@@ -139,52 +179,7 @@ class DesignsController < ApplicationController
     end
   end
 
-  def architect_index
-    respond_to do |format|
-      format.html { architect_index_format }
-      format.json { render json: current_architect.designs }
-    end
-  end
-
-  def user_index
-    respond_to do |format|
-      format.html { user_index_format }
-      format.json { render json: Design.all }
-    end
-  end
-
-  def user_index_format
-    if params[:design_name].present?
-      @pagy, @designs = pagy(Design.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: ITEMS_PER_PAGE)
-    elsif params[:category].present?
-      @pagy, @designs = pagy(Design.where('category LIKE ?', "%#{params[:category]}%"),  items: ITEMS_PER_PAGE)
-    elsif params[:sort] == 'likes'
-      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: ITEMS_PER_PAGE)
-    elsif params[:sort] == 'dislikes'
-      @pagy, @designs = pagy(Design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: ITEMS_PER_PAGE)
-    else
-      @pagy, @designs = pagy(Design.all.includes(:likes, :ratings), items: ITEMS_PER_PAGE)
-    end
-  end
-
-  def architect_index_format
-    if params[:design_name].present?
-      @pagy, @designs = pagy(current_architect.designs.where('design_name LIKE ?', "%#{params[:design_name]}%"),
-                             items: ITEMS_PER_PAGE)
-    elsif params[:category].present?
-      @pagy, @designs = pagy(current_architect.designs.where('category LIKE ?', "%#{params[:category]}%"),
-                             items: ITEMS_PER_PAGE)
-    elsif params[:sort] == 'likes'
-      @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'),
-                             items: ITEMS_PER_PAGE)
-    elsif params[:sort] == 'dislikes'
-      @pagy, @designs = pagy(current_architect.designs.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'),
-                             items: ITEMS_PER_PAGE)
-    else
-      @pagy, @designs = pagy(current_architect.designs.includes(:likes, :ratings), items: ITEMS_PER_PAGE)
-    end
-  end
-
+  # json
   def check_auth
     authenticate_or_request_with_http_basic do |username, password|
       resource = Architect.find_by(email: username)
@@ -192,10 +187,12 @@ class DesignsController < ApplicationController
     end
   end
 
+  # setdesign
   def set_design
     @design = Design.find_by(id: params[:id])
   end
 
+  # params
   def design_params
     params.require(:design).permit(:design_name, :style, :price_per_sqft, :square_feet, :category, :floorplan,
                                    :time_required, :bio, :brief, :architect_id, :design_url)

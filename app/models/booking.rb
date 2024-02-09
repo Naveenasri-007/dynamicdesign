@@ -1,3 +1,10 @@
+# frozen_string_literal: true
+
+# Model representing a booking for a design between a user and an architect.
+# A booking includes details such as expected amount, expected months,
+# architect ID, design name, design URL, message, and status.
+# after booking if the architect like the deal the architect can
+# accept or reject the booking
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :design
@@ -12,6 +19,5 @@ class Booking < ApplicationRecord
   validates_presence_of :design_name, message: 'Design name is null or empty'
   validates_presence_of :design_url, message: 'Design URL is null or empty'
   validates_presence_of :message, message: 'Message is null or empty'
-  # validates :status, inclusion: { in: %w[accepted rejected], message: 'Invalid status.' }
-
+  validates :status, inclusion: { in: %w[accepted rejected Pending], message: 'Invalid status.' }
 end

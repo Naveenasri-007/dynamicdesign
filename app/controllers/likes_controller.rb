@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# LikesController handles the user they likes for the architects designs.
+# Users must be authenticated to perform like-related actions.
+# It includes actions for creating and destroying likes.
 class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_design, only: %i[create destroy]

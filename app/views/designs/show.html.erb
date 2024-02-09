@@ -9,7 +9,7 @@
   <div class="AboutArchitect">
     <div class="photos">
       <% if @design.design_url.present? %>
-        <img src="<%= @design.design_url %>" class="mainimage" id="mainimage" alt="Design Image">
+        <%= image_tag "#{@design.design_url}", alt: "design image", class: "mainimage" , id:"mainimage" rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg', class:"mainimage", id:"mainimage" , alt:"Design Image" %>
       <% else %>
         <%= image_tag "no-picture-available-icon-1.jpg", alt: "design image", class: "mainimage" , id:"mainimage"%>
       <% end %>

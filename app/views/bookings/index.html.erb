@@ -6,7 +6,11 @@
         <% @bookings.each do |booking| %>
           <div id="a-form" class="design-form">
             <% if current_user.present? %>
-              <img src="<%= booking.design_url.present? ? booking.design_url : 'https://www.freeiconspng.com/uploads/photo-album-icon-png-14.png' %>" class="designurl"  id="designUrl" alt="interior design"/>
+            <% if booking.design_url.present? %>
+              <%= image_tag "#{booking.design_url}", class:"designurl", id:"designUrl" , alt:"Design Image"  rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg', class:"designurl", id:"designUrl" , alt:"Design Image" %>
+            <% else %>
+              <%= image_tag "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg", alt: "design image", class: "designurl", id:"designUrl" %>
+            <% end %>
               <div>
                 <pre>Name             : <span id="name"><%= booking.design.architect.name %></span></pre>
               </div>
@@ -32,8 +36,11 @@
                 <a class="verifybtn"><%= booking.status %></a>
               </div>
             <% elsif current_architect.present? %>
-              <%= image_tag booking.design_url || "default_image_path.jpg", class: "designurl", id: "designUrl", alt: "interior design" %>
-
+              <% if booking.design_url.present? %>
+                <%= image_tag "#{booking.design_url}", class:"designurl", id:"designUrl" , alt:"Design Image"  rescue image_tag 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg', class:"designurl", id:"designUrl" , alt:"Design Image" %>
+              <% else %>
+                <%= image_tag "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg", alt: "design image", class: "designurl", id:"designUrl" %>
+              <% end %>
               <div>
                 <pre>Name             : <span id="name"><%= booking.user.name %></span></pre>
               </div>

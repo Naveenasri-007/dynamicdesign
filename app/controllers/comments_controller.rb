@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# CommentsController handles CRUD operations for comments associated with designs.
+# It ensures that the user is authenticated before allowing any actions.
+# The controller also includes authorization checks to certain actions like editing and deleting the comment.
 class CommentsController < ApplicationController
   before_action :set_design
   before_action :set_comment, only: %i[edit update destroy]

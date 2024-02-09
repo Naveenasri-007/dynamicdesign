@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Fabricator(:design) do
-  design_name    Faker::Lorem.paragraph_by_chars(number: 30)
+  design_name Faker::Lorem.paragraph_by_chars(number: 30)
   style           Faker::App.name
   price_per_sqft  Faker::Number.positive.to_i
   square_feet     Faker::Number.positive.to_i
