@@ -8,10 +8,6 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
   before_action :authenticate_user!
 
-  def index
-    @comments = Comment.all
-  end
-
   def create
     @comment = @design.comments.build(comment_params)
     @comment.user = current_user

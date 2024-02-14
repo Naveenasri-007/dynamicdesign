@@ -6,8 +6,8 @@
 class Architect < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :designs, dependent: :delete_all
   has_many :bookings, dependent: :delete_all
+  has_many :designs, dependent: :delete_all
 
   validates :name, presence: true
   validates :profile_photo, presence: true

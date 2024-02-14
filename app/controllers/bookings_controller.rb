@@ -6,11 +6,11 @@ class BookingsController < ApplicationController
   before_action :authenticate_architect_or_user
 
   def index
-    if current_user.present?
-      @bookings = current_user.bookings.includes(design: :architect)
-    elsif current_architect.present?
-      @bookings = current_architect.bookings.includes(:user)
-    end
+    @bookings = if current_user.present?
+                  current_user.bookings.includes(design: :architect)
+                else
+                  current_architect.bookings.includes(:user)
+                end
   end
 
   def new
@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
 
     if @design
       @booking = @design.bookings.build
-      @booking.architect_id = @design.architect_id if @design.architect_id.present?
+      @booking.architect_id = @design.architect_id
     else
       flash[:error] = 'Design not found.'
       redirect_to designs_path

@@ -12,6 +12,18 @@ RSpec.describe Rating, type: :model do
     expect(rating).to be_valid
   end
 
+  it 'is invalid without a user' do
+    rating = Fabricate.build(:rating, design:)
+    expect(rating).to be_invalid
+    expect(rating.errors[:user]).to include('must exist')
+  end
+
+  it 'is invalid without a design' do
+    rating = Fabricate.build(:rating, user:)
+    expect(rating).to be_invalid
+    expect(rating.errors[:design]).to include('must exist')
+  end
+
   it 'is invalid with a value outside the specified range' do
     rating = Fabricate.build(:rating, user:, design:, value: Faker::Number.number(digits: 2))
     expect(rating).to be_invalid

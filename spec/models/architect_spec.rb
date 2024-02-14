@@ -8,6 +8,27 @@ RSpec.describe Architect, type: :model do
     expect(architect).to be_valid
   end
 
+  it 'is valid when the architect is created, the associated is also able to create' do
+    user = Fabricate(:user)
+    architect = Fabricate(:architect)
+    design = Fabricate(:design, architect:)
+    booking = Fabricate(:booking, user:, design:, architect:)
+    expect(Architect.exists?(architect.id)).to be_truthy
+    expect(Design.exists?(design.id)).to be_truthy
+    expect(Booking.exists?(booking.id)).to be_truthy
+  end
+
+  it 'is valid when the architect is deleted, the association is also deleted' do
+    user = Fabricate(:user)
+    architect = Fabricate(:architect)
+    design = Fabricate(:design, architect:)
+    booking = Fabricate(:booking, user:, design:, architect:)
+    architect.destroy
+    expect(Architect.exists?(architect.id)).to be_falsey
+    expect(Design.exists?(design.id)).to be_falsey
+    expect(Booking.exists?(booking.id)).to be_falsey
+  end
+
   it 'is invalid without a name' do
     architect = Fabricate.build(:architect, name: nil)
     expect(architect).to_not be_valid

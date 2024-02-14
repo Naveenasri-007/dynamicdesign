@@ -66,4 +66,26 @@ RSpec.describe Design, type: :model do
     expect(design).to be_invalid
     expect(design.errors[:bio]).to include('Bio must be between 4 and 80 characters')
   end
+
+  it 'deletes associated likes, ratings, comments, and bookings when design is deleted' do
+    user = Fabricate(:user)
+    architect = Fabricate(:architect)
+    design = Fabricate(:design, architect:)
+    rating = Fabricate(:rating, user:, design:)
+    like = Fabricate(:like, user:, design:)
+    comment = Fabricate(:comment, user:, design:)
+    booking = Fabricate(:booking, user:, design:, architect:)
+
+    expect(Like.exists?(like.id)).to be_truthy
+    expect(Rating.exists?(rating.id)).to be_truthy
+    expect(Comment.exists?(comment.id)).to be_truthy
+    expect(Booking.exists?(booking.id)).to be_truthy
+
+    design.destroy
+
+    expect(Like.exists?(like.id)).to be_falsey
+    expect(Rating.exists?(rating.id)).to be_falsey
+    expect(Comment.exists?(comment.id)).to be_falsey
+    expect(Booking.exists?(booking.id)).to be_falsey
+  end
 end

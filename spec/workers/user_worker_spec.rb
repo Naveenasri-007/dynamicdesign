@@ -6,9 +6,9 @@ require 'rails_helper'
 
 RSpec.describe UserWorker, type: :worker do
   describe '#perform' do
-    context 'when user exists' do
-      let!(:user) { Fabricate(:user) }
+    let!(:user) { Fabricate(:user) }
 
+    context 'when user exists' do
       it 'destroys the user and associated records' do
         expect do
           UserWorker.new.perform(user.id)
@@ -21,10 +21,30 @@ RSpec.describe UserWorker, type: :worker do
       end
     end
 
+    it 'is valid when the user is deleted, the association is also deleted' do
+      architect = Fabricate(:architect)
+      design = Fabricate(:design, architect:)
+      rating = Fabricate(:rating, user:, design:)
+      like = Fabricate(:like, user:, design:)
+      comment = Fabricate(:comment, user:, design:)
+      booking = Fabricate(:booking, user:, design:, architect:)
+      expect(User.exists?(user.id)).to be_truthy
+      expect(Rating.exists?(rating.id)).to be_truthy
+      expect(Like.exists?(like.id)).to be_truthy
+      expect(Comment.exists?(comment.id)).to be_truthy
+      expect(Booking.exists?(booking.id)).to be_truthy
+      user.destroy
+      expect(User.exists?(user.id)).to be_falsey
+      expect(Rating.exists?(rating.id)).to be_falsey
+      expect(Like.exists?(like.id)).to be_falsey
+      expect(Comment.exists?(comment.id)).to be_falsey
+      expect(Booking.exists?(booking.id)).to be_falsey
+    end
+
     context 'when user does not exist' do
-      let!(:user) { Fabricate(:user) }
       it 'does not raise an error' do
-        expect { UserWorker.new.perform(user.id) }.not_to raise_error
+        non_existing_user_id = 999
+        expect { UserWorker.new.perform(non_existing_user_id) }.not_to raise_error
       end
     end
   end

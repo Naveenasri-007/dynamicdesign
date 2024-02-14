@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe BookingsController, type: :controller do
   let(:user) { Fabricate.create(:user) }
   let(:architect) { Fabricate.create(:architect) }
+  let(:design) { Fabricate.create(:design, architect:) }
+  let(:booking) { Fabricate.attributes_for(:booking, architect:, design:) }
 
   before { sign_in user }
 
@@ -29,9 +31,10 @@ RSpec.describe BookingsController, type: :controller do
         sign_in architect
       end
 
-      it 'returns a success response' do
+      it 'returns a success response to the current architect' do
         get :index
         expect(response).to have_http_status(:success)
+        expect(response).to render_template(:index)
       end
 
       it 'assigns architect bookings to @bookings' do
@@ -41,26 +44,30 @@ RSpec.describe BookingsController, type: :controller do
         expect(assigns(:bookings)).to eq([booking])
       end
     end
+
+    context 'when the person is not both the user and the architect' do
+      before do
+        sign_out user
+        sign_out architect
+      end
+
+      it 'does not return a success response' do
+        get :index
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:error]).to eq(nil)
+      end
+    end
   end
 
   describe 'GET #new' do
     context 'with a valid design_id' do
-      let(:design) { Fabricate.create(:design, architect:) }
+      let(:booking) { Fabricate.create(:booking, user:, architect:, design:) }
 
       it 'returns a success response' do
         get :new, params: { design_id: design.id }
         expect(response).to have_http_status(:success)
-      end
-
-      it 'assigns a new booking as @booking' do
-        get :new, params: { design_id: design.id }
-        expect(assigns(:booking)).to be_a_new(Booking)
-      end
-
-      it 'assigns the architect_id if present in the design' do
-        design_with_architect = Fabricate.create(:design, architect:)
-        get :new, params: { design_id: design_with_architect.id }
-        expect(assigns(:booking).architect_id).to eq(architect.id)
+        expect(booking.architect_id).to eq(design.architect_id)
       end
     end
 
@@ -79,8 +86,10 @@ RSpec.describe BookingsController, type: :controller do
 
       it 'creates a new booking' do
         expect do
-          post :create, params: { booking: { user_id: user.id, architect_id: architect.id, design_id: design.id } }
-        end.to change(Booking, :count).by(0)
+          post :create, params: { booking: }
+        end.to change(Booking, :count).by(1)
+        expect(response).to redirect_to(architects_path)
+        expect(flash[:notice]).to eq('Booking created successfully.')
       end
     end
 

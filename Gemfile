@@ -45,4 +45,6 @@ group :test do
   gem 'factory_bot_rails'
   gem 'json_matchers'
   gem 'rspec'
+  gem 'simplecov'
+  gem 'simplecov-csv'
 end

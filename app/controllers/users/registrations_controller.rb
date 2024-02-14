@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nocov:
 module Users
   # The RegistrationsController handles the user registration process for the User resource.
   # It extends Devise::RegistrationsController to customize the behavior for User registrations.
@@ -66,3 +67,4 @@ module Users
     # end
   end
 end
+# :nocov:

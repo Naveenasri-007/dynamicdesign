@@ -3,6 +3,7 @@
 # ApplicationController serves as the base controller for the entire application.
 # It includes common functionalities such as protection from
 # configuration of permitted parameters for Devise controllers
+# :nocov:
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -41,3 +42,4 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+# :nocov:

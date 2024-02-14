@@ -7,11 +7,14 @@
 class DesignsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :check_auth, if: proc { |c| c.request.format.json? }
+  before_action :restrict_access, if: -> { current_architect.nil? && current_user.nil? }
   before_action :authenticate_user!, only: %i[index show], if: -> { current_user.present? }
   before_action :authenticate_architect!, only: %i[index show new create edit update destroy],
                                           if: -> { current_architect.present? }
-  before_action :set_design, only: %i[show edit update destroy]
   before_action :load_designs, only: %i[index]
+  before_action :design_by_user_respond, only: %i[new update edit destroy], if: -> { current_user.present? }
+  before_action :set_design_for_user, only: %i[show], if: -> { current_user.present? }
+  before_action :set_design_for_architect, only: %i[show edit update destroy], if: -> { current_architect.present? }
   include Pagy::Backend
   ITEMS_PER_PAGE = 12
 
@@ -19,7 +22,7 @@ class DesignsController < ApplicationController
     respond_to do |format|
       format.html { index_format_for_design }
       format.json do
-        render json: index_format_for_design
+        render json: index_format_for_design[1]
       end
     end
   end
@@ -41,51 +44,49 @@ class DesignsController < ApplicationController
   end
 
   def update
-    @design.architect == current_architect ? design_update : design_update_by_user_respond
+    @design.update(design_params) ? design_update_success_respond : design_update_fail_respond
   end
 
   def destroy
-    @design.architect == current_architect ? design_destroy : design_destory_fail_respond
+    @design.destroy
+    design_destroy_success_respond
   end
 
   private
 
   # index
   def load_designs
-    if current_user.present?
-      @design = Design.all.includes(:likes, :ratings)
-    elsif current_architect.present?
-      @design = current_architect.designs.includes(:likes, :ratings)
-    end
+    @all_designs = if current_user.present?
+                     Design.all.includes(:likes, :ratings)
+                   else
+                     current_architect.designs.includes(:likes, :ratings)
+                   end
   end
 
   def index_format_for_design
     if params[:design_name].present? then search_by_design_name
     elsif params[:category].present? then search_by_category
-    elsif params[:sort].in?(%w[likes dislikes]) then send("sort_by_#{params[:sort]}")
+    elsif params[:sort_by].present? then sort_by_likes
     else
       default_search
     end
   end
 
   def search_by_design_name
-    @pagy, @designs = pagy(@design.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: ITEMS_PER_PAGE)
+    @pagy, @designs = pagy(@all_designs.where('design_name LIKE ?', "%#{params[:design_name]}%"), items: ITEMS_PER_PAGE)
   end
 
   def search_by_category
-    @pagy, @designs = pagy(@design.where('category LIKE ?', "%#{params[:category]}%"), items: ITEMS_PER_PAGE)
+    @pagy, @designs = pagy(@all_designs.where(category: params[:category]), items: ITEMS_PER_PAGE)
   end
 
   def sort_by_likes
-    @pagy, @designs = pagy(@design.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC'), items: ITEMS_PER_PAGE)
-  end
-
-  def sort_by_dislikes
-    @pagy, @designs = pagy(@design.left_joins(:likes).group(:id).order('COUNT(likes.id) ASC'), items: ITEMS_PER_PAGE)
+    @pagy, @designs = pagy(@all_designs.left_joins(:likes).group(:id).order("COUNT(likes.id) #{params[:sort_type]}"),
+                           items: ITEMS_PER_PAGE)
   end
 
   def default_search
-    @pagy, @designs = pagy(@design, items: ITEMS_PER_PAGE)
+    @pagy, @designs = pagy(@all_designs, items: ITEMS_PER_PAGE)
   end
 
   # show
@@ -119,10 +120,6 @@ class DesignsController < ApplicationController
   end
 
   # update
-  def design_update
-    @design.update(design_params) ? design_update_success_respond : design_update_fail_respond
-  end
-
   def design_update_success_respond
     respond_to do |format|
       format.html do
@@ -143,22 +140,17 @@ class DesignsController < ApplicationController
     end
   end
 
-  def design_update_by_user_respond
+  def design_by_user_respond
     respond_to do |format|
       format.html do
-        flash[:alert] = 'You do not have access to update this design.'
+        flash[:alert] = 'You do not have access to modify this design.'
         redirect_to designs_path
       end
-      format.json { render json: { errors: 'You do not have access to update this design.' }, status: :forbidden }
+      format.json { render json: { errors: 'You do not have access to modify this design.' }, status: :forbidden }
     end
   end
 
   # destroy
-  def design_destroy
-    @design.destroy
-    design_destroy_success_respond
-  end
-
   def design_destroy_success_respond
     respond_to do |format|
       format.html do
@@ -169,27 +161,30 @@ class DesignsController < ApplicationController
     end
   end
 
-  def design_destory_fail_respond
-    respond_to do |format|
-      format.html do
-        flash[:alert] = 'You do not have access to delete this design.'
-        redirect_to designs_path
-      end
-      format.json { render json: { error: 'You do not have access to delete this design.' }, status: :forbidden }
-    end
+  def restrict_access
+    redirect_to root_path
   end
 
   # json
   def check_auth
     authenticate_or_request_with_http_basic do |username, password|
-      resource = Architect.find_by(email: username)
-      sign_in :architect, resource if resource.valid_password?(password)
+      if (resource = Architect.find_by(email: username))
+        sign_in :architect, resource if resource.valid_password?(password)
+      elsif (resource = User.find_by(email: username))
+        sign_in(:user, resource) if resource.valid_password?(password)
+      else
+        restrict_access
+      end
     end
   end
 
   # setdesign
-  def set_design
+  def set_design_for_user
     @design = Design.find_by(id: params[:id])
+  end
+
+  def set_design_for_architect
+    @design = current_architect.designs.find_by(id: params[:id])
   end
 
   # params

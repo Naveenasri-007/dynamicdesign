@@ -25,8 +25,8 @@
     <option value="bathroom">Bath Room</option>
   </select>
 
-  <%= link_to "Sort by Likes", designs_path(sort: 'likes') %>
-  <%= link_to "Sort by Dislikes", designs_path(sort: 'dislikes') %> 
+  <%= link_to "Sort by Likes", designs_path(sort_by:'likes' ,sort_type: 'DESC') %>
+  <%= link_to "Sort by Dislikes", designs_path(sort_by:'likes' ,sort_type: 'ASC') %> 
 
     <div class="designs">
     <% if @designs.present? %>

@@ -6,6 +6,14 @@ RSpec.describe Booking, type: :model do
   let(:user) { Fabricate.create(:user) }
   let(:architect) { Fabricate.create(:architect) }
 
+  it 'valid bookings' do
+    design = Fabricate(:design, architect:)
+    booking = Fabricate(:booking, user:, design:, architect:)
+    expect(Booking.exists?(booking.id)).to be_truthy
+    design.destroy
+    expect(Booking.exists?(booking.id)).to be_falsey
+  end
+
   it 'is invalid without expected amount' do
     booking = Fabricate.build(:booking, user:, architect:, expected_amount: nil)
     expect(booking).to be_invalid

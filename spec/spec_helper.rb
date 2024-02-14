@@ -13,7 +13,42 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
-#
+require 'simplecov'
+require 'simplecov-csv'
+
+SimpleCov.start do
+  # filters
+  # add file/folder patterns that needs to be excluded from SimpleCov as required
+  add_filter %r{^/spec/}
+  add_filter %r{^/bin/}
+  add_filter %r{^/vendor/}
+  add_filter %r{^/deploy/}
+  add_filter %r{^/db/}
+  add_filter %r{^/config/environments}
+  add_filter %r{^/config/initializers/(?!patches)}
+  add_filter %r{^/lib/tasks}
+
+  # groups
+  # add folders that needs to be grouped separately in coverage report
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Models', 'app/models'
+  add_group 'Services', 'app/services'
+  add_group 'Workers', 'app/workers'
+  add_group 'Libraries', 'lib/'
+  add_group 'Patches', 'config/initializers/patches'
+
+  track_files '{app,lib}/**/*.rb'
+  enable_coverage :branch
+  coverage_dir 'tmp/coverage'
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::CSVFormatter
+  ]
+)
+SimpleCov.minimum_coverage line: 100, branch: 100
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

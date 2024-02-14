@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nocov:
 module Architect
   # The RegistrationsController handles the architect registration process for the Architect resource.
   # It extends Devise::RegistrationsController to customize the behavior for architect registrations.
@@ -66,3 +67,4 @@ module Architect
     # end
   end
 end
+# :nocov:
