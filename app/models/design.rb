@@ -19,7 +19,7 @@ class Design < ApplicationRecord
   validates :category, inclusion: { in: %w[bedroom livingroom kitchen bathroom], message: 'Invalid design category' }
   validates :floorplan, inclusion: { in: %w[1BHK 2BHK 3BHK 3+BHK], message: 'Invalid design floor plan' }
   validates_length_of :bio, within: 4..80, message: 'Bio must be between 4 and 80 characters'
-  validates_length_of :brief, within: 10..2000, message: 'Brief must be between 10 and 2000 characters'
+  validates_length_of :brief, within: 10..200_000, message: 'Brief must be between 10 and 200_000 characters'
 
   scope :by_likes, -> { joins(:likes).group('designs.id').order('COUNT(likes.id) DESC') }
   scope :by_dislikes, -> { joins(:likes).group('designs.id').order('COUNT(likes.id) ASC') }

@@ -10,24 +10,25 @@
 </head>
 <body>
   <p style="color: green"><%= notice %></p>
+  <div style="margin-left: 40%;">
 
-  <form>
-    <label for="design_name">Search By Name : </label>
-    <input type="text" name="design_name">
-    <input type="submit" value="Search">
-  </form>
+    <form>
+      <label for="design_name">Search By Name : </label>
+      <input type="text" name="design_name">
+      <input type="submit" value="Search">
+    </form>
 
-  <select id="category-filter" onchange="filterDesigns(this.value)">
-    <option value="">All Categories</option>
-    <option value="livingroom">Living Room</option>
-    <option value="bedroom">Bed Room</option>
-    <option value="kitchen">Kitchen</option>
-    <option value="bathroom">Bath Room</option>
-  </select>
+    <select id="category-filter" onchange="filterDesigns(this.value)">
+      <option value="">All Categories</option>
+      <option value="livingroom">Living Room</option>
+      <option value="bedroom">Bed Room</option>
+      <option value="kitchen">Kitchen</option>
+      <option value="bathroom">Bath Room</option>
+    </select>
 
-  <%= link_to "Sort by Likes", designs_path(sort_by:'likes' ,sort_type: 'DESC') %>
-  <%= link_to "Sort by Dislikes", designs_path(sort_by:'likes' ,sort_type: 'ASC') %> 
-
+    <%= link_to "Sort by Likes", designs_path(sort_by:'likes' ,sort_type: 'DESC') %>
+    <%= link_to "Sort by Dislikes", designs_path(sort_by:'likes' ,sort_type: 'ASC') %> 
+  </div>
     <div class="designs">
     <% if @designs.present? %>
       <% @designs.each do |design| %>
@@ -77,8 +78,9 @@
     <% end %>
   </div>
 
+<div style="margin-left: 45%;">
   <%= pagy_bootstrap_nav(@pagy).html_safe %>
-
+</div>
   <% if current_architect.present? %>
    <%= link_to "New design", new_design_path %>
   <% end %>

@@ -16,14 +16,12 @@ class DesignsController < ApplicationController
   before_action :set_design_for_user, only: %i[show], if: -> { current_user.present? }
   before_action :set_design_for_architect, only: %i[show edit update destroy], if: -> { current_architect.present? }
   include Pagy::Backend
-  ITEMS_PER_PAGE = 12
+  ITEMS_PER_PAGE = 9
 
   def index
     respond_to do |format|
       format.html { index_format_for_design }
-      format.json do
-        render json: index_format_for_design[1]
-      end
+      format.json { render json: index_format_for_design[1] }
     end
   end
 

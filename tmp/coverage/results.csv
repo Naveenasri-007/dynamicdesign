@@ -4,7 +4,7 @@ File,% covered,Lines,Relevant Lines,Lines covered,Lines missed
 "./app/controllers/architects_controller.rb",100,59,30,30,0
 "./app/controllers/bookings_controller.rb",100,55,28,28,0
 "./app/controllers/comments_controller.rb",100,72,40,40,0
-"./app/controllers/designs_controller.rb",100,205,106,106,0
+"./app/controllers/designs_controller.rb",100,193,105,105,0
 "./app/controllers/home_controller.rb",100,8,3,3,0
 "./app/controllers/likes_controller.rb",100,39,20,20,0
 "./app/controllers/ratings_controller.rb",100,60,32,32,0

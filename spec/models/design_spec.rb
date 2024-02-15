@@ -58,7 +58,7 @@ RSpec.describe Design, type: :model do
   it 'is invalid with a brief outside the specified length range' do
     design = Fabricate.build(:design, brief: 'A' * 5)
     expect(design).to be_invalid
-    expect(design.errors[:brief]).to include('Brief must be between 10 and 2000 characters')
+    expect(design.errors[:brief]).to include('Brief must be between 10 and 200_000 characters')
   end
 
   it 'is invalid with a bio outside the specified length range' do

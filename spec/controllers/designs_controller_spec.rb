@@ -231,7 +231,7 @@ RSpec.describe DesignsController, type: :controller do
         json_response = JSON.parse(response.body)
         expect(json_response['errors']).to include('Design name design Name must be between 3 and 30 characters')
         expect(json_response['errors']).to include('Bio Bio must be between 4 and 80 characters')
-        expect(json_response['errors']).to include('Brief Brief must be between 10 and 2000 characters')
+        expect(json_response['errors']).to include('Brief Brief must be between 10 and 200_000 characters')
       end
     end
   end
